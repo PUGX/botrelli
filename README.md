@@ -6,6 +6,9 @@ BOTrelli
 The Name is a tribute to a great FOSS developer, that helps the community daily,
 but this BOT is just a stupid bot, is far from his quality.
 
+![botrelli](https://puppetlabs.com/sites/default/files/tumblr_inline_mufk7mU38k1raprkq_0.gif)
+
+
 ### Why?
 
 Because is hot today in Rome and we are going to meet into an hack-night.
