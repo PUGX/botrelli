@@ -4,7 +4,7 @@ namespace PUGX\Bot\Tests\Package;
 
 use \PUGX\Bot\Package\PackageRepository;
 
-class PackageTest extends \PHPUnit_Framework_TestCase
+class PackageRepositoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -13,7 +13,7 @@ class PackageTest extends \PHPUnit_Framework_TestCase
     {
         $this->markTestIncomplete();
 
-        $provider =  $this->getMock('\PUGX\Bot\Package\ProviderInterface');
+        $provider = $this->getMock('\PUGX\Bot\Package\ProviderInterface');
         $packageRepository = new PackageRepository($provider);
 
         $this->assertInstanceOf('\Packagist\Api\Result\Package', $packageRepository->getANeverVisitedPackage());

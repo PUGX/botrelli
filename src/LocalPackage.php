@@ -2,7 +2,6 @@
 
 namespace PUGX\Bot;
 
-use Packagist\Api\Result\Package;
 use Packagist\Api\Result\AbstractResult;
 
 class LocalPackage extends AbstractResult
@@ -18,47 +17,60 @@ class LocalPackage extends AbstractResult
 
     public function getName()
     {
-        return $this->package->name;
+        return $this->package->getName();
     }
 
     public function getDescription()
     {
-        return $this->package->description;
+        return $this->package->getDescription();
     }
 
     public function getTime()
     {
-        return $this->package->time;
+        return $this->package->getTime();
     }
 
     public function getMaintainers()
     {
-        return $this->package->maintainers;
+        return $this->package->getMaintainers();
     }
 
     public function getVersions()
     {
-        return $this->package->versions;
+        return $this->package->getVersions();
     }
 
     public function getType()
     {
-        return $this->package->type;
+        return $this->package->getType();
     }
 
     public function getRepository()
     {
-        return $this->package->repository;
+        return $this->package->getRepository();
     }
 
     public function getDownloads()
     {
-        return $this->package->downloads;
+        return $this->package->getDownloads();
     }
 
     public function getFavers()
     {
-        return $this->package->favers;
+        return $this->package->getFavers();
+    }
+
+    public function getUsername()
+    {
+        return $this->package->getUsername();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRepoName()
+    {
+        return $this->package->getRepoName();
     }
 
     /**

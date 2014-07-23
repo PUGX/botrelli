@@ -14,6 +14,6 @@ class FunnyMessageRepository implements MessageRepositoryInterface
      */
     public function fetch()
     {
-       throw new \Exception('Missing funny message');
+        throw new \Exception('Missing funny message');
     }
 } 

@@ -26,7 +26,8 @@
         "fabpot/php-cs-fixer": "0.5.4"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "phpunit/phpunit": "~4"
     },
     "scripts": {
         "post-root-package-install": [
