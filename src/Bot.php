@@ -9,13 +9,13 @@ class Bot
 {
    public function execute()
    {
-       $useCase = new UseCase\GetANeverVisitedPackage();
+       $useCase = new UseCase\GetANeverVisitedPackage();//--
        $package = $useCase->execute();
 
-       $useCase = new UseCase\ForkPackage();
+       $useCase = new UseCase\ForkPackage(\stdClass);
        $useCase->execute($package);
 
-       $useCase = new UseCase\CloneLocally();
+       $useCase = new UseCase\CloneLocally();//
        $localPackage = $useCase->execute($package, $this->getLocallyDir($package));
 
        $useCase = new UseCase\ExecuteCSFixer();
