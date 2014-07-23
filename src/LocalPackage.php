@@ -61,4 +61,12 @@ class LocalPackage extends AbstractResult
         return $this->package->favers;
     }
 
+    /**
+     * @return string
+     */
+    public function getFolder()
+    {
+        return $this->folder;
+    }
+
 }

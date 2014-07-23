@@ -18,7 +18,9 @@ class Bot
        $useCase = new UseCase\CloneLocally();
        $localPackage = $useCase->execute($package, $this->getLocallyDir($package));
 
-       $useCase = new UseCase\ExecuteCSFixer();
+       $phpCsFixerBin = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'php-cs-fixer';
+
+       $useCase = new UseCase\ExecuteCSFixer($phpCsFixerBin, 4000);
        $useCase->execute($localPackage);
 
        $useCase = new UseCase\CommitAndPush();
