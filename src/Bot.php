@@ -2,23 +2,23 @@
 
 namespace PUGX\Bot;
 
-use PUGX\Bot\UseCase;
-use PUGX\Bot\Infrastructure\FunnyMessageRepository;
 use Github\Client;
+use GitWrapper\GitWrapper;
+use PUGX\Bot\Infrastructure\FunnyMessageRepository;
+use PUGX\Bot\UseCase;
 
 class Bot
 {
-
     public function execute()
     {
         $useCase = new UseCase\GetANeverVisitedPackage();
         $package = $useCase->execute();
 
-        $client = $this->getAuthenticateGitHubClient();
+        $client  = $this->getAuthenticateGitHubClient();
         $useCase = new UseCase\ForkPackage($client);
         $useCase->execute($package);
 
-        $useCase = new UseCase\CloneLocally();
+        $useCase      = new UseCase\CloneLocally(new GitWrapper()); //
         $localPackage = $useCase->execute($package, $this->getLocallyDir($package));
 
         $useCase = new UseCase\ExecuteCSFixer();
@@ -44,6 +44,7 @@ class Bot
     {
         $client = new Client();
         $client->authenticate('botrelli', '33ca8d0d2d362accbbd918f87f5ef2709505d362', Client::AUTH_URL_TOKEN);
+
         return $client;
     }
 
