@@ -11,10 +11,11 @@ class Bot
 {
     public function execute()
     {
+        $client  = $this->getAuthenticateGitHubClient();
+
         $useCase = new UseCase\GetANeverVisitedPackage();
         $package = $useCase->execute();
 
-        $client  = $this->getAuthenticateGitHubClient();
         $useCase = new UseCase\ForkPackage($client);
         $useCase->execute($package);
 
@@ -29,7 +30,7 @@ class Bot
         $useCase = new UseCase\CommitAndPush();
         $useCase->execute($localPackage);
 
-        $useCase = new UseCase\MakeAPR(new FunnyMessageRepository());
+        $useCase = new UseCase\MakeAPR($client, new FunnyMessageRepository());
         $useCase->execute($localPackage);
     }
 
