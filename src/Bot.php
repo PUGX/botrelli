@@ -9,12 +9,23 @@ use PUGX\Bot\UseCase;
 
 class Bot
 {
+    private $githubUserName;
+    private $githubToken;
+
+    function __construct($githubToken, $githubUserName)
+    {
+        $this->githubToken = $githubToken;
+        $this->githubUserName = $githubUserName;
+    }
+
     public function execute()
     {
         $client  = $this->getAuthenticateGitHubClient();
 
         $useCase = new UseCase\GetANeverVisitedPackage();
         $package = $useCase->execute();
+
+
 
         $useCase = new UseCase\ForkPackage($client);
         $useCase->execute($package);
@@ -34,10 +45,12 @@ class Bot
         $useCase->execute($localPackage);
     }
 
-    // @todo create a dir with the slugify of the package->getName()
+
     private function getLocallyDir($package)
     {
-        return sys_get_temp_dir();
+        $name = preg_replace("[^\w\s\d\.\-_~,;:\[\]\(\]]", '', $package->getName());
+
+        return sys_get_temp_dir() . DIRECTORY_SEPARATOR . $name;
     }
 
     /**
@@ -46,7 +59,7 @@ class Bot
     private function getAuthenticateGitHubClient()
     {
         $client = new Client();
-        $client->authenticate('botrelli', '33ca8d0d2d362accbbd918f87f5ef2709505d362', Client::AUTH_URL_TOKEN);
+        $client->authenticate($this->githubUserName, $this->githubToken, Client::AUTH_URL_TOKEN);
 
         return $client;
     }
