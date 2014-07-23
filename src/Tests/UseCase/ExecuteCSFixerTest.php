@@ -2,15 +2,13 @@
 
 namespace PUGX\Bot\Tests\Package;
 
-use Packagist\Api\Result\Package;
+use PUGX\Bot\Package;
 use PUGX\Bot\LocalPackage;
 use PUGX\Bot\UseCase\ExecuteCSFixer;
 
 class ExecuteCSFixerTest extends \PHPUnit_Framework_TestCase
 {
-
     private $fileToFix;
-
 
     public function setUp()
     {

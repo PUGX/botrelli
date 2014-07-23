@@ -8,6 +8,19 @@ use Github\Client;
 
 class MakeAPR
 {
+    const PREFIX = <<< EOF
+| Q             | A
+| ------------- | ---
+| Bug fix?      | no
+| New feature?  | no
+| BC breaks?    | no
+| Deprecations? | no
+| Tests pass?   | yes
+| Fixed tickets |
+| License       | MIT
+| Doc PR        |
+EOF;
+
     private $messageRepository;
     private $client;
 
@@ -29,5 +42,15 @@ class MakeAPR
                 'body' => $message
             ));
         return 201 === $this->client->getHttpClient()->getLastResponse()->getStatusCode();
+    }
+
+    private function getPrefixCommitMessage()
+    {
+        return self::PREFIX;
+    }
+
+    private function getCommitTitle()
+    {
+        return '[CS] Coding Standard fixed';
     }
 } 
