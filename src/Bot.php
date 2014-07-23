@@ -2,6 +2,7 @@
 
 namespace PUGX\Bot;
 
+use GitWrapper\GitWrapper;
 use PUGX\Bot\UseCase;
 use PUGX\Bot\Infrastructure\FunnyMessageRepository;
 
@@ -15,7 +16,7 @@ class Bot
        $useCase = new UseCase\ForkPackage(\stdClass);
        $useCase->execute($package);
 
-       $useCase = new UseCase\CloneLocally();//
+       $useCase = new UseCase\CloneLocally(new GitWrapper());//
        $localPackage = $useCase->execute($package, $this->getLocallyDir($package));
 
        $useCase = new UseCase\ExecuteCSFixer();

@@ -2,11 +2,25 @@
 
 namespace PUGX\Bot\UseCase;
 
+use GitWrapper\GitWrapper;
 use PUGX\Bot\LocalPackage;
 use Packagist\Api\Result\Package;
 
 class CloneLocally
 {
+    /**
+     * @var GitWrapper $gitWrapper
+     */
+    private $gitWrapper;
+
+    /**
+     * @param GitWrapper $gitWrapper
+     */
+    public function __construct(GitWrapper $gitWrapper)
+    {
+        $this->gitWrapper = $gitWrapper;
+    }
+
     /**
      * @param Package $package
      * @param $dir
@@ -15,6 +29,8 @@ class CloneLocally
      */
     public function execute(Package $package, $dir)
     {
-        return false;
+       $this->gitWrapper->cloneRepository($package->getRepository(), $dir);
+
+       return new LocalPackage($dir, $package);
     }
-} 
+}
