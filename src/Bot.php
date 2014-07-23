@@ -4,34 +4,47 @@ namespace PUGX\Bot;
 
 use PUGX\Bot\UseCase;
 use PUGX\Bot\Infrastructure\FunnyMessageRepository;
+use Github\Client;
 
 class Bot
 {
-   public function execute()
-   {
-       $useCase = new UseCase\GetANeverVisitedPackage();//--
-       $package = $useCase->execute();
 
-       $useCase = new UseCase\ForkPackage(\stdClass);
-       $useCase->execute($package);
+    public function execute()
+    {
+        $useCase = new UseCase\GetANeverVisitedPackage();
+        $package = $useCase->execute();
 
-       $useCase = new UseCase\CloneLocally();//
-       $localPackage = $useCase->execute($package, $this->getLocallyDir($package));
+        $client = $this->getAuthenticateGitHubClient();
+        $useCase = new UseCase\ForkPackage($client);
+        $useCase->execute($package);
 
-       $useCase = new UseCase\ExecuteCSFixer();
-       $useCase->execute($localPackage);
+        $useCase = new UseCase\CloneLocally();
+        $localPackage = $useCase->execute($package, $this->getLocallyDir($package));
 
-       $useCase = new UseCase\CommitAndPush();
-       $useCase->execute($localPackage);
+        $useCase = new UseCase\ExecuteCSFixer();
+        $useCase->execute($localPackage);
 
-       $useCase = new UseCase\MakeAPR(new FunnyMessageRepository());
-       $useCase->execute($localPackage);
-   }
+        $useCase = new UseCase\CommitAndPush();
+        $useCase->execute($localPackage);
+
+        $useCase = new UseCase\MakeAPR(new FunnyMessageRepository());
+        $useCase->execute($localPackage);
+    }
 
     // @todo create a dir with the slugify of the package->getName()
     private function getLocallyDir($package)
     {
         return sys_get_temp_dir();
+    }
+
+    /**
+     * @return Client
+     */
+    private function getAuthenticateGitHubClient()
+    {
+        $client = new Client();
+        $client->authenticate('botrelli', '33ca8d0d2d362accbbd918f87f5ef2709505d362', Client::AUTH_URL_TOKEN);
+        return $client;
     }
 
 } 
