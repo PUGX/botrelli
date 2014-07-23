@@ -1,6 +1,6 @@
 <?php
-namespace PUGX\Bot\Package;
 
+namespace PUGX\Bot\Package;
 
 class PackageRepository
 {
@@ -14,6 +14,6 @@ class PackageRepository
 
     public function getANeverVisitedPackage()
     {
-        throw new \Exception('Not Implemented');
+        return $this->provider->getANeverVisitedPackage();
     }
 } 

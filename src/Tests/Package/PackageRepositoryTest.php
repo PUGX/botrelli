@@ -9,11 +9,19 @@ class PackageRepositoryTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldGetAValidPackage()
+    public function shouldGetANeverVisitedPackage()
     {
-        $this->markTestIncomplete();
-
         $provider = $this->getMock('\PUGX\Bot\Package\ProviderInterface');
+
+        $package = $this->getMockBuilder('PUGX\Bot\Package')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $provider
+            ->expects($this->once())
+            ->method('getANeverVisitedPackage')
+            ->will($this->returnValue($package));
+
         $packageRepository = new PackageRepository($provider);
 
         $this->assertInstanceOf('\Packagist\Api\Result\Package', $packageRepository->getANeverVisitedPackage());

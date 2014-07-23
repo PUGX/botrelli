@@ -15,7 +15,16 @@ class GetANeverVisitedPackageTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $package = $this->getMockBuilder('PUGX\Bot\Package')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $repository
+            ->expects($this->once())
+            ->method('getANeverVisitedPackage')
+            ->will($this->returnValue($package));
+
         $command = new GetANeverVisitedPackage($repository);
-        $this->assertTrue($command->execute());
+        $this->assertEquals($package, $command->execute());
     }
 }
