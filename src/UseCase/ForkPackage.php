@@ -15,6 +15,6 @@ class ForkPackage
 
     public function execute(Package $package)
     {
-        $repository = $this->client->api('repo')->forks()->create($package->getUsername(), $package->getRepoName());
+        return $this->client->api('repo')->forks()->create($package->getUsername(), $package->getRepoName());
     }
 } 

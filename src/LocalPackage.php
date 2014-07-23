@@ -73,4 +73,12 @@ class LocalPackage extends AbstractResult
         return $this->package->getRepoName();
     }
 
+    /**
+     * @return string
+     */
+    public function getFolder()
+    {
+        return $this->folder;
+    }
+
 }
