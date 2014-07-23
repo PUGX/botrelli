@@ -31,18 +31,18 @@ instruction:
 
 ## The Flow:
 
-``` php
-UseCase\GetANeverVisitedPackage
 
-UseCase\ForkPackage
+UseCase\GetANeverVisited Package by this BOT on packagist
 
-UseCase\CloneLocally
+UseCase\ForkPackage on github
 
-UseCase\ExecuteCSFixer
+UseCase\CloneLocally with git
 
-UseCase\CommitAndPush
+UseCase\ExecuteCSFixer with php-cs-fixer
 
-UseCase\MakeAPR
+UseCase\CommitAndPush with git
+
+UseCase\MakeAPR on github
 ```
 
 Take a look to:
