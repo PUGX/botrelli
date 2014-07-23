@@ -2,7 +2,7 @@
 
 namespace PUGX\Bot\UseCase;
 
-use Packagist\Api\Result\Package;
+use PUGX\Bot\Package;
 
 class ForkPackage
 {
@@ -15,7 +15,6 @@ class ForkPackage
 
     public function execute(Package $package)
     {
-        $repository = $this->client->api('repo')->forks()->create($package->getName(), $package->get);
-        return false;
+        $repository = $this->client->api('repo')->forks()->create($package->getUsername(), $package->getRepoName());
     }
 } 
