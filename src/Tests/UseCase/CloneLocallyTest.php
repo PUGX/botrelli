@@ -20,7 +20,7 @@ class CloneLocallyTest extends \PHPUnit_Framework_TestCase
                           ->disableOriginalConstructor()
                           ->getMock();
 
-        $package = $this->getMockBuilder('\Packagist\Api\Result\Package')
+        $package = $this->getMockBuilder('PUGX\Bot\Package')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -34,6 +34,7 @@ class CloneLocallyTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($repoName));
 
         $command = new CloneLocally($gitWrapper);
+
         $this->assertInstanceOf('\PUGX\Bot\LocalPackage', $command->execute($package, $localPath));
     }
 }

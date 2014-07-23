@@ -16,7 +16,7 @@ class MakeAPR
 
     public function execute(LocalPackage $package)
     {
-        $message =  (string) $this->messageRepository->fetch();
+        $message = (string)$this->messageRepository->fetch();
 
         return false;
     }

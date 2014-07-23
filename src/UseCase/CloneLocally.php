@@ -4,7 +4,7 @@ namespace PUGX\Bot\UseCase;
 
 use GitWrapper\GitWrapper;
 use PUGX\Bot\LocalPackage;
-use Packagist\Api\Result\Package;
+use PUGX\Bot\Package;
 
 class CloneLocally
 {

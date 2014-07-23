@@ -3,7 +3,8 @@
 namespace PUGX\Bot\Message;
 
 
-class Message {
+class Message
+{
 
     private $text;
 
@@ -14,7 +15,7 @@ class Message {
 
     public function __toString()
     {
-        return (string) $this->text;
+        return (string)$this->text;
     }
 
 } 
