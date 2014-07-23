@@ -12,11 +12,12 @@ class FunnyMessageRepository implements MessageRepositoryInterface
 
     public function __construct()
     {
-        $messages[] = "D'oh!";
-        $messages[] = "This is nearly perfect, now!";
-        $messages[] = "Spring cleaning...";
-        $messages[] = "Details make perfection, and perfection is not a detail (Leonardo Da Vinci)";
-        $messages[] = "No thanks needed, dude!";
+        $messages[] = New Message("D'oh!");
+        $messages[] = New Message("This is nearly perfect, now!");
+        $messages[] = New Message("Spring cleaning...");
+        $messages[] = New Message("Details make perfection, and perfection is not a detail (Leonardo Da Vinci)");
+        $messages[] = New Message("No thanks needed, dude!");
+        $messages[] = New Message("They call me PSR-Nazi.");
         $this->messages = $messages;
     }
 
