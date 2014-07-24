@@ -1,8 +1,8 @@
 {
-    "name": "pugx/botrelli",
+    "name": "PUGX/botrelli",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "The Name is a tribute to a great FOSS developer, that helps the community daily, but this BOT is just a stupid bot, is far from his quality.",
     "autoload": {
         "psr-0": { "SymfonyStandard": "app/" },
         "psr-4": { "PUGX\\Bot\\": "src" }
