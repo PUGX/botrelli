@@ -2,7 +2,7 @@
     "name": "pugx/botrelli",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "trolling around...",
     "autoload": {
         "psr-0": { "SymfonyStandard": "app/" },
         "psr-4": { "PUGX\\Bot\\": "src" }
