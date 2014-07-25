@@ -26,7 +26,7 @@ class Bot
         }
     }
 
-    public function execute(Package $package, $dryrun)
+    public function execute(Package $package, $dryrun = false)
     {
         $client  = $this->getAuthenticateGitHubClient();
         $gitWrapper = $this->getGitWrapper();
