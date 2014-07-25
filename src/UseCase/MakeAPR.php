@@ -19,6 +19,8 @@ class MakeAPR
 | Fixed tickets |
 | License       | MIT
 | Doc PR        |
+
+
 EOF;
 
     private $messageRepository;
@@ -33,24 +35,25 @@ EOF;
     public function execute(LocalPackage $package)
     {
         $message = (string)$this->messageRepository->fetch();
+
         $pullRequest = $this->client
             ->api('pull_request')
             ->create( $package->getUsername(), $package->getRepoName(), array(
                 'base' => 'master',
-                'head' => 'master',
-                'title' => 'CS Fixes',
-                'body' => $message
+                'head' => 'botrelli:'.$package->getLocalBranch(),
+                'title' => $this->getCommitTitle(),
+                'body' => $this->getCommitMessageWithPrefix($message)
             ));
         return 201 === $this->client->getHttpClient()->getLastResponse()->getStatusCode();
     }
 
-    private function getPrefixCommitMessage()
+    private function getCommitMessageWithPrefix($message)
     {
-        return self::PREFIX;
+        return self::PREFIX . $message;
     }
 
     private function getCommitTitle()
     {
-        return '[CS] Coding Standard fixed';
+        return '[CS] Coding Standard fixes';
     }
 } 

@@ -22,7 +22,7 @@ class MakeAPRTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('getRepoName')
             ->will($this->returnValue('botrelli'));
-        $localPackage = new LocalPackage('/tmp', $package);
+        $localPackage = new LocalPackage(null, '/tmp', $package);
 
         $messageRepository = $this->getMock('\PUGX\Bot\Message\MessageRepositoryInterface');
         $messageRepository
@@ -38,7 +38,21 @@ class MakeAPRTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->with($this->equalTo('pugx'),
                 $this->equalTo('botrelli'),
-                $this->equalTo(array('base' => 'master', 'head' => 'master', 'title' => 'CS Fixes', 'body' => 'A funny message')));
+                $this->equalTo(array('base' => 'master',
+                        'head' => 'botrelli:cs_fixer',
+                        'title' => '[CS] Coding Standard fixes',
+                        'body' => '| Q             | A
+| ------------- | ---
+| Bug fix?      | no
+| New feature?  | no
+| BC breaks?    | no
+| Deprecations? | no
+| Tests pass?   | yes
+| Fixed tickets |
+| License       | MIT
+| Doc PR        |
+
+A funny message')));
 
         $response = $this->getMockBuilder('\Guzzle\Http\Message\Response')
             ->disableOriginalConstructor()

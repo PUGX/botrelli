@@ -22,7 +22,7 @@ class ExecuteCSFixerTest extends \PHPUnit_Framework_TestCase
     {
         $before    = $this->getFileMD5($this->fileToFix);
 
-        $package = new LocalPackage($this->fileToFix, new Package());
+        $package = new LocalPackage(array(), $this->fileToFix, new Package());
         $command = new ExecuteCSFixer($this->csFixBin());
 
         $this->assertEquals(1, $command->execute($package));

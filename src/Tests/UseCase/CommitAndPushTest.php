@@ -14,7 +14,7 @@ class CommitAndPushTest extends \PHPUnit_Framework_TestCase
     public function shouldBeAbleToCommitAndPush()
     {
 
-        $package = new LocalPackage('/tmp', new Package());
+        $package = new LocalPackage(array(), '/tmp', new Package());
 
         $gitWorkingCopy = $this->getMockBuilder('GitWrapper\GitWorkingCopy')
             ->disableOriginalConstructor()
@@ -35,7 +35,7 @@ class CommitAndPushTest extends \PHPUnit_Framework_TestCase
         $gitWorkingCopy
             ->expects($this->once())
             ->method('push')
-            ->with($this->equalTo('origin'), $this->equalTo('master'))
+            ->with($this->equalTo('origin'), $this->equalTo('cs_fixer'))
             ->will($this->returnValue('860106e..4b64b6e  master -> master'));
 
         $command = new CommitAndPush();
@@ -49,7 +49,7 @@ class CommitAndPushTest extends \PHPUnit_Framework_TestCase
     public function shouldReturnFalseIfPushFails()
     {
 
-        $package = new LocalPackage('/tmp', new Package());
+        $package = new LocalPackage(array(), '/tmp', new Package());
 
         $gitWorkingCopy = $this->getMockBuilder('GitWrapper\GitWorkingCopy')
             ->disableOriginalConstructor()
@@ -70,7 +70,7 @@ class CommitAndPushTest extends \PHPUnit_Framework_TestCase
         $gitWorkingCopy
             ->expects($this->once())
             ->method('push')
-            ->with($this->equalTo('origin'), $this->equalTo('master'))
+            ->with($this->equalTo('origin'), $this->equalTo('cs_fixer'))
             ->will($this->returnValue('error: some error'));
 
         $command = new CommitAndPush();

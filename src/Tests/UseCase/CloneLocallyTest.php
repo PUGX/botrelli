@@ -1,5 +1,5 @@
 <?php
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Tests\UseCase;
 
 use Packagist\Api\Result\Package;
 
@@ -20,14 +20,23 @@ class CloneLocallyTest extends \PHPUnit_Framework_TestCase
                           ->disableOriginalConstructor()
                           ->getMock();
 
+        $git= $this->getMockBuilder('\GitWrapper\GitWorkingCopy')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $git->expects($this->any())
+            ->method('config')
+            ->will($this->returnValue($git));
+
         $package = $this->getMockBuilder('PUGX\Bot\Package')
             ->disableOriginalConstructor()
             ->getMock();
 
+        $localPackage = new LocalPackage(null, $localPath, $package);
+
         $gitWrapper->expects($this->once())
                    ->method('cloneRepository')
-                   ->with($repoName, $localPath)
-                   ->will($this->returnValue(new LocalPackage(null, $package)));
+                   ->will($this->returnValue($git));
 
         $package->expects($this->once())
             ->method('getRepository')
@@ -35,6 +44,6 @@ class CloneLocallyTest extends \PHPUnit_Framework_TestCase
 
         $command = new CloneLocally($gitWrapper);
 
-        $this->assertInstanceOf('\PUGX\Bot\LocalPackage', $command->execute($package, $localPath));
+        $this->assertNotFalse($command->execute($localPackage));
     }
 }

@@ -8,11 +8,13 @@ class LocalPackage extends AbstractResult
 {
     protected $folder;
     protected $package;
+    protected $fork;
 
-    function __construct($folder, Package $package)
+    function __construct($fork, $folder, Package $package)
     {
         $this->folder = $folder;
         $this->package = $package;
+        $this->fork = $fork;
     }
 
     public function getName()
@@ -81,4 +83,21 @@ class LocalPackage extends AbstractResult
         return $this->folder;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMyFork()
+    {
+        return $this->fork;
+    }
+
+    public function getForkSSHRepository()
+    {
+        return $this->fork['ssh_url'];
+    }
+
+    public function getLocalBranch()
+    {
+        return 'cs_fixer';
+    }
 }

@@ -24,10 +24,11 @@ class CommitAndPush
             $this->git = new GitWorkingCopy($gitWrapper, $package->getFolder());
         }
 
+
         $result = $this->git
             ->add('.')
             ->commit('CS Fixes')
-            ->push('origin', 'master');
+            ->push('origin', $package->getLocalBranch());
 
         return strpos($result, 'error: ') === false;
     }
