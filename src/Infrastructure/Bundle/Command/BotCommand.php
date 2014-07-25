@@ -18,6 +18,7 @@ class BotCommand  extends ContainerAwareCommand
             ->setName('fix:repo')
             ->setDescription('Make a Pull Request on the given repo')
             ->addArgument('repository', InputArgument::REQUIRED, 'Packagist repository name.')
+            ->addOption('dry-run', 'dr', InputOption::VALUE_NONE, 'Execute without making the final PR')
         ;
     }
 
@@ -26,9 +27,11 @@ class BotCommand  extends ContainerAwareCommand
         $bot = $this->getBot();
 
         $name = $input->getArgument('repository');
+        $dryrun = $input->getOption('dry-run');
+
         $package  = $this->getPackageFromPackagist($name);
 
-        $text = $bot->execute($package);
+        $text = $bot->execute($package, $dryrun);
         $output->writeln($text);
     }
 
