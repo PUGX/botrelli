@@ -23,31 +23,16 @@ I think that is a funny way to spent time together, so yes both.
 
 2) Composer install
 
-3) phpunit -c app
+3) Configure your Api key and your username
 
-4) Install PHP-CS-FIXER
+4) phpunit -c app
 
-instruction:
-
-  https://github.com/fabpot/PHP-CS-Fixer#globally-manual
+5)
 
 
 ## The Flow:
 
 
-UseCase\GetANeverVisited Package by this BOT on packagist
-
-UseCase\ForkPackage on github
-
-UseCase\CloneLocally with git
-
-UseCase\ExecuteCSFixer with php-cs-fixer
-
-UseCase\CommitAndPush with git
-
-UseCase\MakeAPR on github
-```
-
 Take a look to:
 
-src/Bot.php
+    src/Bot.php

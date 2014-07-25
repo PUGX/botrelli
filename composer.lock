@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1a4af2286e400dd46dc983c52f9b533c",
+    "hash": "c973a94310e8fdf1f1c393ced2975414",
     "packages": [
         {
             "name": "cpliakas/git-wrapper",
@@ -2544,7 +2544,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "knplabs/packagist-api": 20,
-        "knplabs/github-api": 20
+        "knplabs/github-api": 20,
+        "phpunit/phpunit": 0
     },
     "platform": {
         "php": ">=5.3.3"

@@ -4,7 +4,6 @@ namespace PUGX\Bot\UseCase;
 
 use GitWrapper\GitWrapper;
 use PUGX\Bot\LocalPackage;
-use PUGX\Bot\Package;
 
 class CloneLocally
 {
@@ -22,15 +21,23 @@ class CloneLocally
     }
 
     /**
-     * @param Package $package
-     * @param $dir
+     * @param LocalPackage $package
      *
-     * @return LocalPackage
+     * @return GitWorkingCopy
      */
-    public function execute(Package $package, $dir)
+    public function execute(LocalPackage $package)
     {
-       $this->gitWrapper->cloneRepository($package->getRepository(), $dir);
+        $git = $this->gitWrapper->cloneRepository($package->getForkSSHRepository(), $package->getFolder());
 
-       return new LocalPackage($dir, $package);
+        $git
+            ->config('user.name', 'BOTrelli')
+            ->config('user.email', 'botrelli@gmx.com');
+
+        $git->remote('add', 'upstream', $package->getRepository());
+        $git->checkout($package->getLocalBranch(), array('b'=>true));
+
+        $git->fetch('upstream');
+        $git->merge('upstream/master');
+        return $git->rebase('master');
     }
 }

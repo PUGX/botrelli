@@ -19,3 +19,4 @@ parameters:
     use_assetic_controller: true
     github_credential_username: botrelli
     github_credential_token: 123
+    private_key_path:  ~/.ssh/id_rsa
