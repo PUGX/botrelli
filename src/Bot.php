@@ -26,7 +26,7 @@ class Bot
         }
     }
 
-    public function execute(Package $package)
+    public function execute(Package $package, $dryrun)
     {
         $client  = $this->getAuthenticateGitHubClient();
         $gitWrapper = $this->getGitWrapper();
@@ -42,11 +42,15 @@ class Bot
         $useCase = new UseCase\ExecuteCSFixer($this->phpCsFixerBin, 4000);
         $useCase->execute($localPackage);
 
-        $useCase = new UseCase\CommitAndPush($gitWrapper);
-        $useCase->execute($localPackage);
+         if(!$dryrun){
 
-        $useCase = new UseCase\MakeAPR($client, new FunnyMessageRepository());
-        $useCase->execute($localPackage);
+            $useCase = new UseCase\CommitAndPush($gitWrapper);
+            $useCase->execute($localPackage);
+
+            $useCase = new UseCase\MakeAPR($client, new FunnyMessageRepository());
+            $useCase->execute($localPackage);
+        }
+
     }
 
 
