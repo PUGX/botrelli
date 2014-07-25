@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        return $this->render('PUGXBotinfrastructureBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('PUGXBotInfrastructureBundle:Default:index.html.twig', array('name' => $name));
     }
 }
