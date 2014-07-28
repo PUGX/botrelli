@@ -1,6 +1,6 @@
 <?php
 
-namespace PUGX\Bot\UseCase;
+namespace PUGX\Bot\Step;
 
 use PUGX\Bot\LocalPackage;
 use PUGX\Bot\Message\MessageRepositoryInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use PUGX\Bot\Events\StepsEvents;
 use PUGX\Bot\Events\PullRequestMade;
 
-class MakeAPR extends DispatcherUseCase
+class MakeAPR extends DispatcherStep
 {
     const PREFIX = <<< EOF
 | Q             | A

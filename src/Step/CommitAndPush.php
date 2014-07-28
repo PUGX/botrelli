@@ -1,13 +1,13 @@
 <?php
 
-namespace PUGX\Bot\UseCase;
+namespace PUGX\Bot\Step;
 
 use PUGX\Bot\LocalPackage;
 use GitWrapper\GitWorkingCopy;
 use PUGX\Bot\Events\GitEventMade;
 use PUGX\Bot\Events\StepsEvents;
 
-class CommitAndPush extends DispatcherUseCase
+class CommitAndPush extends DispatcherStep
 {
 
     public function execute(GitWorkingCopy $git, LocalPackage $package)

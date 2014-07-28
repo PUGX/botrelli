@@ -1,11 +1,11 @@
 <?php
 
-namespace PUGX\Bot\UseCase;
+namespace PUGX\Bot\Step;
 
 use PUGX\Bot\Package\PackageRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class GetANeverVisitedPackage extends DispatcherUseCase
+class GetANeverVisitedPackage extends DispatcherStep
 {
     private $repository;
 

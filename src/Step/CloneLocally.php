@@ -1,13 +1,13 @@
 <?php
 
-namespace PUGX\Bot\UseCase;
+namespace PUGX\Bot\Step;
 
 use GitWrapper\GitWrapper;
 use PUGX\Bot\Events\PackageClonedLocally;
 use PUGX\Bot\LocalPackage;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class CloneLocally extends DispatcherUseCase
+class CloneLocally extends DispatcherStep
 {
     /**
      * @var GitWrapper $gitWrapper

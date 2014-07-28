@@ -6,7 +6,7 @@ use Github\Client;
 use GitWrapper\GitWrapper;
 use GitWrapper\GitWorkingCopy;
 use PUGX\Bot\Infrastructure\FunnyMessageRepository;
-use PUGX\Bot\UseCase;
+use PUGX\Bot\Step;
 use PUGX\Bot\Package;
 
 class Bot
@@ -34,26 +34,26 @@ class Bot
         $client  = $this->getAuthenticateGitHubClient();
         $gitWrapper = $this->getGitWrapper();
 
-        $useCase = new UseCase\ForkPackage($client, $this->dispatcher);
-        $repository = $useCase->execute($package);
+        $step = new Step\ForkPackage($client, $this->dispatcher);
+        $repository = $step->execute($package);
 
         $localPackage =  new LocalPackage($repository, $this->sanitizeLocallyDir($package), $package);
 
-        $useCase      = new UseCase\CloneLocally($gitWrapper, $this->dispatcher);
-        $useCase->execute($localPackage);
+        $step      = new Step\CloneLocally($gitWrapper, $this->dispatcher);
+        $step->execute($localPackage);
 
 
-        $useCase = new UseCase\ExecuteCSFixer($this->phpCsFixerBin, 4000, $this->dispatcher);
-        $useCase->execute($localPackage);
+        $step = new Step\ExecuteCSFixer($this->phpCsFixerBin, 4000, $this->dispatcher);
+        $step->execute($localPackage);
 
          if(!$dryRun){
 
-            $useCase = new UseCase\CommitAndPush($this->dispatcher);
+            $step = new Step\CommitAndPush($this->dispatcher);
             $git =  $this->getGitWorking($gitWrapper, $localPackage);
-            $useCase->execute($git, $localPackage);
+            $step->execute($git, $localPackage);
 
-            $useCase = new UseCase\MakeAPR($client, new FunnyMessageRepository(), $this->dispatcher);
-            $useCase->execute($localPackage);
+            $step = new Step\MakeAPR($client, new FunnyMessageRepository(), $this->dispatcher);
+            $step->execute($localPackage);
         }
 
     }

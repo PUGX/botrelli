@@ -1,11 +1,11 @@
 <?php
 
-namespace PUGX\Bot\Tests\UseCase;
+namespace PUGX\Bot\Tests\Step;
 
 use Packagist\Api\Result\Package;
 
 use PUGX\Bot\LocalPackage;
-use PUGX\Bot\UseCase\CloneLocally;
+use PUGX\Bot\Step\CloneLocally;
 
 class CloneLocallyTest extends BaseTestCase
 {

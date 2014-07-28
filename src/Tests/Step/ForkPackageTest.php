@@ -1,9 +1,9 @@
 <?php
 
-namespace PUGX\Bot\Tests\UseCase;
+namespace PUGX\Bot\Tests\Step;
 
 use PUGX\Bot\Package;
-use PUGX\Bot\UseCase\ForkPackage;
+use PUGX\Bot\Step\ForkPackage;
 
 class ForkPackageTest extends BaseTestCase
 {

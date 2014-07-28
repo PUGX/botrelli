@@ -1,5 +1,5 @@
 <?php
-namespace PUGX\Bot\Tests\UseCase;
+namespace PUGX\Bot\Tests\Step;
 
 
 class BaseTestCase extends \PHPUnit_Framework_TestCase

@@ -1,10 +1,10 @@
 <?php
 
-namespace PUGX\Bot\Tests\UseCase;
+namespace PUGX\Bot\Tests\Step;
 
 use PUGX\Bot\Package;
 use PUGX\Bot\LocalPackage;
-use PUGX\Bot\UseCase\ExecuteCSFixer;
+use PUGX\Bot\Step\ExecuteCSFixer;
 
 class ExecuteCSFixerTest extends BaseTestCase
 {

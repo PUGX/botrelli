@@ -1,8 +1,8 @@
 <?php
 
-namespace PUGX\Bot\Tests\UseCase;
+namespace PUGX\Bot\Tests\Step;
 
-use PUGX\Bot\UseCase\GetANeverVisitedPackage;
+use PUGX\Bot\Step\GetANeverVisitedPackage;
 
 class GetANeverVisitedPackageTest extends BaseTestCase
 {

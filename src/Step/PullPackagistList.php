@@ -1,12 +1,12 @@
 <?php
 
-namespace PUGX\Bot\UseCase;
+namespace PUGX\Bot\Step;
 
 use Packagist\Api\Client;
 use PUGX\Bot\Package\ProviderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class PullPackagistList extends DispatcherUseCase
+class PullPackagistList extends DispatcherStep
 {
     private $packagistClient;
     private $provider;

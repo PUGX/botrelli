@@ -1,10 +1,10 @@
 <?php
 
-namespace PUGX\Bot\Tests\UseCase;
+namespace PUGX\Bot\Tests\Step;
 
 use PUGX\Bot\Package;
 use PUGX\Bot\LocalPackage;
-use PUGX\Bot\UseCase\CommitAndPush;
+use PUGX\Bot\Step\CommitAndPush;
 
 class CommitAndPushTest extends BaseTestCase
 {

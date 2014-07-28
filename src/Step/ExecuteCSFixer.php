@@ -1,12 +1,12 @@
 <?php
 
-namespace PUGX\Bot\UseCase;
+namespace PUGX\Bot\Step;
 
 use PUGX\Bot\LocalPackage;
 use Symfony\Component\Process\Process;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class ExecuteCSFixer extends DispatcherUseCase
+class ExecuteCSFixer extends DispatcherStep
 {
     const DEFAULT_TIMEOUT = 3600;
 

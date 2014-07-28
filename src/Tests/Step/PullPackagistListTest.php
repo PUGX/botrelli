@@ -1,8 +1,8 @@
 <?php
 
-namespace PUGX\Bot\Tests\UseCase;
+namespace PUGX\Bot\Tests\Step;
 
-use PUGX\Bot\UseCase\PullPackagistList;
+use PUGX\Bot\Step\PullPackagistList;
 
 class PullPackagistListTest extends BaseTestCase
 {

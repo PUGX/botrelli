@@ -1,6 +1,6 @@
 <?php
 
-namespace PUGX\Bot\UseCase;
+namespace PUGX\Bot\Step;
 
 use Github\Api\Repo;
 use PUGX\Bot\Package;
@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use PUGX\Bot\Events\StepsEvents;
 use PUGX\Bot\Events\RepositoryForkedEvent;
 
-class ForkPackage extends DispatcherUseCase
+class ForkPackage extends DispatcherStep
 {
     /**
      * @var \Github\Client $client

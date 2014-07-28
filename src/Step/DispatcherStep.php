@@ -1,11 +1,11 @@
 <?php
 
-namespace PUGX\Bot\UseCase;
+namespace PUGX\Bot\Step;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\Event;
 
-abstract class DispatcherUseCase
+abstract class DispatcherStep
 {
     /**
      * @var $eventDispatcher
