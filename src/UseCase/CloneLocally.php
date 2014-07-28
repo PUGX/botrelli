@@ -3,9 +3,11 @@
 namespace PUGX\Bot\UseCase;
 
 use GitWrapper\GitWrapper;
+use PUGX\Bot\Events\PackageClonedLocally;
 use PUGX\Bot\LocalPackage;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class CloneLocally
+class CloneLocally extends DispatcherUseCase
 {
     /**
      * @var GitWrapper $gitWrapper
@@ -15,9 +17,10 @@ class CloneLocally
     /**
      * @param GitWrapper $gitWrapper
      */
-    public function __construct(GitWrapper $gitWrapper)
+    public function __construct(GitWrapper $gitWrapper, EventDispatcherInterface $dispatcher)
     {
         $this->gitWrapper = $gitWrapper;
+        parent::__construct($dispatcher);
     }
 
     /**
@@ -38,6 +41,10 @@ class CloneLocally
 
         $git->fetch('upstream');
         $git->merge('upstream/master');
-        return $git->rebase('master');
+        $workingDir = $git->rebase('master');
+
+        $this->dispatchEvent('packageClonedLocally', new PackageClonedLocally());
+
+        return $workingDir;
     }
 }

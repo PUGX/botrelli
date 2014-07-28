@@ -1,12 +1,12 @@
 <?php
 
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Tests\UseCase;
 
 use PUGX\Bot\Package;
 use PUGX\Bot\LocalPackage;
 use PUGX\Bot\UseCase\CommitAndPush;
 
-class CommitAndPushTest extends \PHPUnit_Framework_TestCase
+class CommitAndPushTest extends BaseTestCase
 {
     /**
      * @test
@@ -38,10 +38,9 @@ class CommitAndPushTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo('origin'), $this->equalTo('cs_fixer'))
             ->will($this->returnValue('860106e..4b64b6e  master -> master'));
 
-        $command = new CommitAndPush();
-        $command->initGit($gitWorkingCopy);
+        $command = new CommitAndPush($this->mockEventDispatcher());
 
-        $this->assertTrue($command->execute($package));
+        $this->assertTrue($command->execute($gitWorkingCopy, $package));
     }
     /**
      * @test
@@ -70,12 +69,15 @@ class CommitAndPushTest extends \PHPUnit_Framework_TestCase
         $gitWorkingCopy
             ->expects($this->once())
             ->method('push')
-            ->with($this->equalTo('origin'), $this->equalTo('cs_fixer'))
-            ->will($this->returnValue('error: some error'));
+            ->with($this->equalTo('origin'), $this->equalTo('cs_fixer'));
 
-        $command = new CommitAndPush();
-        $command->initGit($gitWorkingCopy);
+        $gitWorkingCopy
+            ->expects($this->once())
+            ->method('getStatus')
+            ->will($this->returnValue('something'));
 
-        $this->assertFalse($command->execute($package));
+        $command = new CommitAndPush($this->mockEventDispatcher());
+
+        $this->assertFalse($command->execute($gitWorkingCopy, $package));
     }
 }

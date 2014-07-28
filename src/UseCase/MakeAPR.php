@@ -5,8 +5,11 @@ namespace PUGX\Bot\UseCase;
 use PUGX\Bot\LocalPackage;
 use PUGX\Bot\Message\MessageRepositoryInterface;
 use Github\Client;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use PUGX\Bot\Events\StepsEvents;
+use PUGX\Bot\Events\PullRequestMade;
 
-class MakeAPR
+class MakeAPR extends DispatcherUseCase
 {
     const PREFIX = <<< EOF
 | Q             | A
@@ -26,8 +29,9 @@ EOF;
     private $messageRepository;
     private $client;
 
-    function __construct(Client $client, MessageRepositoryInterface $messageRepository)
+    function __construct(Client $client, MessageRepositoryInterface $messageRepository, EventDispatcherInterface $dispatcher)
     {
+        parent::__construct($dispatcher);
         $this->messageRepository = $messageRepository;
         $this->client = $client;
     }
@@ -44,6 +48,9 @@ EOF;
                 'title' => $this->getCommitTitle(),
                 'body' => $this->getCommitMessageWithPrefix($message)
             ));
+
+        $this->dispatchEvent(StepsEvents::PULL_REQUEST_MADE, new PullRequestMade($pullRequest));
+
         return 201 === $this->client->getHttpClient()->getLastResponse()->getStatusCode();
     }
 

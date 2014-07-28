@@ -1,12 +1,12 @@
 <?php
 
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Tests\UseCase;
 
 use PUGX\Bot\Package;
 use PUGX\Bot\LocalPackage;
 use PUGX\Bot\UseCase\ExecuteCSFixer;
 
-class ExecuteCSFixerTest extends \PHPUnit_Framework_TestCase
+class ExecuteCSFixerTest extends BaseTestCase
 {
     private $fileToFix;
 
@@ -23,7 +23,7 @@ class ExecuteCSFixerTest extends \PHPUnit_Framework_TestCase
         $before    = $this->getFileMD5($this->fileToFix);
 
         $package = new LocalPackage(array(), $this->fileToFix, new Package());
-        $command = new ExecuteCSFixer($this->csFixBin());
+        $command = new ExecuteCSFixer($this->csFixBin(), 100, $this->mockEventDispatcher());
 
         $this->assertEquals(1, $command->execute($package));
 
@@ -37,7 +37,7 @@ class ExecuteCSFixerTest extends \PHPUnit_Framework_TestCase
     public function shouldNotBeAbleToRunCsFixWithTheWrongBinaryFile()
     {
         $this->setExpectedException('\InvalidArgumentException', ' is not executable!');
-        new ExecuteCSFixer('');
+        new ExecuteCSFixer('', 100, $this->mockEventDispatcher());
     }
 
     /**
@@ -45,7 +45,7 @@ class ExecuteCSFixerTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldNotThrowNoExceptionsWithTheCorrectPhpCsBinary()
     {
-        new ExecuteCSFixer($this->csFixBin());
+        new ExecuteCSFixer($this->csFixBin(), 100, $this->mockEventDispatcher());
     }
 
     public function tearDown()

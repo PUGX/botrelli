@@ -1,4 +1,5 @@
 <?php
+
 namespace PUGX\Bot\Tests\UseCase;
 
 use Packagist\Api\Result\Package;
@@ -6,7 +7,7 @@ use Packagist\Api\Result\Package;
 use PUGX\Bot\LocalPackage;
 use PUGX\Bot\UseCase\CloneLocally;
 
-class CloneLocallyTest extends \PHPUnit_Framework_TestCase
+class CloneLocallyTest extends BaseTestCase
 {
     /**
      * @test
@@ -42,7 +43,7 @@ class CloneLocallyTest extends \PHPUnit_Framework_TestCase
             ->method('getRepository')
             ->will($this->returnValue($repoName));
 
-        $command = new CloneLocally($gitWrapper);
+        $command = new CloneLocally($gitWrapper, $this->mockEventDispatcher());
 
         $this->assertNotFalse($command->execute($localPackage));
     }

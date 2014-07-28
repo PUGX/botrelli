@@ -3,13 +3,15 @@
 namespace PUGX\Bot\UseCase;
 
 use PUGX\Bot\Package\PackageRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class GetANeverVisitedPackage
+class GetANeverVisitedPackage extends DispatcherUseCase
 {
     private $repository;
 
-    public function __construct(PackageRepository $repository)
+    public function __construct(PackageRepository $repository, EventDispatcherInterface $dispatcher)
     {
+        parent::__construct($dispatcher);
         $this->repository = $repository;
     }
 

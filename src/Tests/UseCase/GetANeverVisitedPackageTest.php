@@ -1,10 +1,10 @@
 <?php
 
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Tests\UseCase;
 
 use PUGX\Bot\UseCase\GetANeverVisitedPackage;
 
-class GetANeverVisitedPackageTest extends \PHPUnit_Framework_TestCase
+class GetANeverVisitedPackageTest extends BaseTestCase
 {
     /**
      * @test
@@ -24,7 +24,7 @@ class GetANeverVisitedPackageTest extends \PHPUnit_Framework_TestCase
             ->method('getANeverVisitedPackage')
             ->will($this->returnValue($package));
 
-        $command = new GetANeverVisitedPackage($repository);
+        $command = new GetANeverVisitedPackage($repository, $this->mockEventDispatcher());
         $this->assertEquals($package, $command->execute());
     }
 }

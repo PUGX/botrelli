@@ -1,12 +1,12 @@
 <?php
 
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Tests\UseCase;
 
 use PUGX\Bot\Package;
 use PUGX\Bot\LocalPackage;
 use PUGX\Bot\UseCase\MakeAPR;
 
-class MakeAPRTest extends \PHPUnit_Framework_TestCase
+class MakeAPRTest extends BaseTestCase
 {
     /**
      * @test
@@ -80,7 +80,7 @@ A funny message')));
             ->method('getHttpClient')
             ->will($this->returnValue($httpClient));
 
-        $command = new MakeAPR($client, $messageRepository);
+        $command = new MakeAPR($client, $messageRepository, $this->mockEventDispatcher());
 
         $this->assertTrue($command->execute($localPackage));
     }

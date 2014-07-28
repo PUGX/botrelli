@@ -4,6 +4,7 @@ namespace PUGX\Bot;
 
 use Github\Client;
 use GitWrapper\GitWrapper;
+use GitWrapper\GitWorkingCopy;
 use PUGX\Bot\Infrastructure\FunnyMessageRepository;
 use PUGX\Bot\UseCase;
 use PUGX\Bot\Package;
@@ -13,9 +14,11 @@ class Bot
     private $githubUserName;
     private $githubToken;
     private $phpCsFixerBin;
+    private $dispatcher;
 
-    function __construct($githubToken, $githubUserName, $privateKeyPath, $phpCsFixerBin = null)
+    function __construct($dispatcher, $githubToken, $githubUserName, $privateKeyPath, $phpCsFixerBin = null)
     {
+        $this->dispatcher = $dispatcher;
         $this->githubToken = $githubToken;
         $this->githubUserName = $githubUserName;
         $this->privateKeyPath = $privateKeyPath;
@@ -26,28 +29,30 @@ class Bot
         }
     }
 
-    public function execute(Package $package, $dryrun = false)
+    public function execute(Package $package, $dryRun = false)
     {
         $client  = $this->getAuthenticateGitHubClient();
         $gitWrapper = $this->getGitWrapper();
 
-        $useCase = new UseCase\ForkPackage($client);
+        $useCase = new UseCase\ForkPackage($client, $this->dispatcher);
         $repository = $useCase->execute($package);
 
         $localPackage =  new LocalPackage($repository, $this->sanitizeLocallyDir($package), $package);
 
-        $useCase      = new UseCase\CloneLocally($gitWrapper);
+        $useCase      = new UseCase\CloneLocally($gitWrapper, $this->dispatcher);
         $useCase->execute($localPackage);
 
-        $useCase = new UseCase\ExecuteCSFixer($this->phpCsFixerBin, 4000);
+
+        $useCase = new UseCase\ExecuteCSFixer($this->phpCsFixerBin, 4000, $this->dispatcher);
         $useCase->execute($localPackage);
 
-         if(!$dryrun){
+         if(!$dryRun){
 
-            $useCase = new UseCase\CommitAndPush($gitWrapper);
-            $useCase->execute($localPackage);
+            $useCase = new UseCase\CommitAndPush($this->dispatcher);
+            $git =  $this->getGitWorking($gitWrapper, $localPackage);
+            $useCase->execute($git, $localPackage);
 
-            $useCase = new UseCase\MakeAPR($client, new FunnyMessageRepository());
+            $useCase = new UseCase\MakeAPR($client, new FunnyMessageRepository(), $this->dispatcher);
             $useCase->execute($localPackage);
         }
 
@@ -105,7 +110,7 @@ class Bot
         $folderSuffix = $folder;
 
         if ($i != 0) {
-            $folderSuffix .= '-'.$i;
+            $folderSuffix .= '-'.$i.rand(0, PHP_INT_MAX);
         }
 
         if (file_exists($folderSuffix)) {

@@ -10,12 +10,11 @@ Debug::enable();
 
 require_once __DIR__.'/../app/AppKernel.php';
 
-
+$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
 $githubUsername = 'botrelli';
 $githubToken = '66d27b3ea53eda58ad7f71253dc2338b08efe4c4';
 
-
-$bot = new \PUGX\Bot\Bot($githubUsername, $githubToken, '/home/liuggio/.ssh/botrelli_rsa');
+$bot = new \PUGX\Bot\Bot($dispatcher, $githubUsername, $githubToken, '/home/liuggio/.ssh/botrelli_rsa');
 
 $package = new \PUGX\Bot\Package();
 $package->fromArray(['name'=>'pugx/botrelli', 'repository' => 'https://github.com/PUGX/botrelli']);

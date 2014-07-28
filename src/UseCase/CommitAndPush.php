@@ -3,33 +3,29 @@
 namespace PUGX\Bot\UseCase;
 
 use PUGX\Bot\LocalPackage;
-use GitWrapper\GitWrapper;
 use GitWrapper\GitWorkingCopy;
+use PUGX\Bot\Events\GitEventMade;
+use PUGX\Bot\Events\StepsEvents;
 
-
-class CommitAndPush
+class CommitAndPush extends DispatcherUseCase
 {
-    private $git;
 
-    public function initGit(GitWorkingCopy $gitWorkingCopy)
+    public function execute(GitWorkingCopy $git, LocalPackage $package)
     {
-        $this->git = $gitWorkingCopy;
+        $git->add('.');
+        $this->dispatchEvent(StepsEvents::GIT_ADDED, new GitEventMade($git));
+
+        $git->commit($this->getCommitMessage($git));
+        $this->dispatchEvent(StepsEvents::GIT_COMMITTED, new GitEventMade($git));
+
+        $git->push('origin', $package->getLocalBranch(), array('f' => true));
+        $this->dispatchEvent(StepsEvents::GIT_PUSHED, new GitEventMade($git));
+
+        return (null === $git->getStatus())?true:false;
     }
 
-    public function execute(LocalPackage $package)
+    private function getCommitMessage(GitWorkingCopy $git)
     {
-
-        if($this->git === null) {
-            $gitWrapper = new GitWrapper();
-            $this->git = new GitWorkingCopy($gitWrapper, $package->getFolder());
-        }
-
-
-        $result = $this->git
-            ->add('.')
-            ->commit('CS Fixes')
-            ->push('origin', $package->getLocalBranch());
-
-        return strpos($result, 'error: ') === false;
+       return 'CS Fixes';
     }
 } 

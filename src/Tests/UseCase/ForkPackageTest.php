@@ -1,11 +1,11 @@
 <?php
 
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Tests\UseCase;
 
 use PUGX\Bot\Package;
 use PUGX\Bot\UseCase\ForkPackage;
 
-class ForkPackageTest extends \PHPUnit_Framework_TestCase
+class ForkPackageTest extends BaseTestCase
 {
     /**
      * @test
@@ -14,7 +14,7 @@ class ForkPackageTest extends \PHPUnit_Framework_TestCase
     {
         $package      = $this->getMockedPackage();
         $githubClient = $this->prepareMockedGithubClient($package);
-        $command      = new ForkPackage($githubClient);
+        $command      = new ForkPackage($githubClient, $this->eventDispatcher);
 
         $command->execute($package);
     }

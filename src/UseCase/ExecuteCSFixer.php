@@ -4,8 +4,9 @@ namespace PUGX\Bot\UseCase;
 
 use PUGX\Bot\LocalPackage;
 use Symfony\Component\Process\Process;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class ExecuteCSFixer
+class ExecuteCSFixer extends DispatcherUseCase
 {
     const DEFAULT_TIMEOUT = 3600;
 
@@ -23,8 +24,9 @@ class ExecuteCSFixer
      */
     private $timeout;
 
-    public function __construct($csFixerBin, $timeout = self::DEFAULT_TIMEOUT)
+    public function __construct($csFixerBin, $timeout = self::DEFAULT_TIMEOUT, EventDispatcherInterface $dispatcher)
     {
+        parent::__construct($dispatcher);
         if (!is_executable($csFixerBin)) {
             throw new \InvalidArgumentException(sprintf('%s is not executable!', $csFixerBin));
         }

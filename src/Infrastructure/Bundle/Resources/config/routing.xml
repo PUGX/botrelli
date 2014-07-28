@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="pugx_botinfrastructure_homepage" path="/hello/{name}">
-        <default key="_controller">PUGXBotInfrastructureBundle:Default:index</default>
+    <route id="pugx_botinfrastructure_homepage" path="/">
+        <default key="_controller">PUGXBotInfrastructureBundle:Default:get</default>
     </route>
 </routes>

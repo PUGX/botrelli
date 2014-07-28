@@ -1,10 +1,10 @@
 <?php
 
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Tests\UseCase;
 
 use PUGX\Bot\UseCase\PullPackagistList;
 
-class PullPackagistListTest extends \PHPUnit_Framework_TestCase
+class PullPackagistListTest extends BaseTestCase
 {
     /**
      * @test
@@ -34,7 +34,7 @@ class PullPackagistListTest extends \PHPUnit_Framework_TestCase
             ->with($packages)
             ->will($this->returnValue(true));
 
-        $command = new PullPackagistList($client, $provider);
+        $command = new PullPackagistList($client, $provider, $this->mockEventDispatcher());
         $this->assertTrue($command->execute());
     }
 }
