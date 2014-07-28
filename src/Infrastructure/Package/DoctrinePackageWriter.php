@@ -1,9 +1,10 @@
 <?php
 
-namespace PUGX\Bot\Package;
+namespace PUGX\Bot\Infrastructure\Package;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use PUGX\Bot\Package;
+use PUGX\Bot\Package\PackageWriterInterface;
 
 class DoctrinePackageWriter implements PackageWriterInterface
 {
@@ -19,5 +20,4 @@ class DoctrinePackageWriter implements PackageWriterInterface
         $this->manager->persist($package);
         $this->manager->flush($package);
     }
-
 } 

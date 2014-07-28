@@ -2,6 +2,8 @@
 
 namespace PUGX\Bot\Package;
 
+use PUGX\Bot\Package;
+
 class PackageRepository
 {
     /** @var ProviderInterface */
@@ -12,8 +14,21 @@ class PackageRepository
         $this->provider = $provider;
     }
 
-    public function getANeverVisitedPackage()
+//    public function getANeverVisitedPackage()
+//    {
+//        return $this->provider->getANeverVisitedPackage();
+//    }
+
+    public function getPackage($repository)
     {
-        return $this->provider->getANeverVisitedPackage();
+        $repo = $this->provider->get($repository);
+
+        if (!$repo) {
+            throw new \Exception('Repository name not valid');
+        }
+
+        $repo = Package::createFromPackage($repo);
+
+        return $repo;
     }
 } 

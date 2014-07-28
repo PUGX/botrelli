@@ -11,6 +11,8 @@ class PullPackagistListTest extends BaseTestCase
      */
     public function shouldBeAbleToFetchAListOfPackages()
     {
+        $this->markTestSkipped('');
+
         $client = $this->getMockBuilder('Packagist\Api\Client')
             ->disableOriginalConstructor()
             ->getMock();

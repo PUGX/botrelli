@@ -2,7 +2,7 @@
 
 namespace PUGX\Bot\Tests\Infrastructure;
 
-use \PUGX\Bot\Infrastructure\FunnyMessageRepository;
+use PUGX\Bot\Infrastructure\FunnyMessageRepository;
 
 class FunnyMessageRepositoryTest extends \PHPUnit_Framework_TestCase
 {

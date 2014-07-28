@@ -1,8 +1,8 @@
 <?php
 
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Infrastructure\Tests\Package;
 
-use PUGX\Bot\Package\DoctrinePackageWriter;
+use PUGX\Bot\Infrastructure\Package\DoctrinePackageWriter;
 
 class DoctrinePackageWriterTest extends \PHPUnit_Framework_TestCase
 {

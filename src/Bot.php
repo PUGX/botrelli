@@ -42,7 +42,6 @@ class Bot
         $step      = new Step\CloneLocally($gitWrapper, $this->dispatcher);
         $step->execute($localPackage);
 
-
         $step = new Step\ExecuteCSFixer($this->phpCsFixerBin, 4000, $this->dispatcher);
         $step->execute($localPackage);
 
@@ -55,7 +54,6 @@ class Bot
             $step = new Step\MakeAPR($client, new FunnyMessageRepository(), $this->dispatcher);
             $step->execute($localPackage);
         }
-
     }
 
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace PUGX\Bot\Tests\Package;
+namespace PUGX\Bot\Infrastructure\Tests\Package;
 
-use PUGX\Bot\Package\DoctrinePackageReader;
+use PUGX\Bot\Infrastructure\Package\DoctrinePackageReader;
 
 class DoctrinePackageReaderTest extends \PHPUnit_Framework_TestCase
 {
