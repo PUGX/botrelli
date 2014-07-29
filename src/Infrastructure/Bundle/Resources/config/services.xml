@@ -12,7 +12,12 @@
             <argument type="service" id="event_dispatcher" />
             <argument>%github_credential_username%</argument>
             <argument>%github_credential_token%</argument>
+            <argument>%github_credential_email%</argument>
             <argument>%private_key_path%</argument>
+        </service>
+
+        <service id="botrelli.get_random_package" class="PUGX\Bot\Service\GetRandomPackage">
+            <argument type="service" id="botrelli.package.repository" />
         </service>
     </services>
 

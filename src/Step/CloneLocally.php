@@ -34,6 +34,7 @@ class CloneLocally extends DispatcherStep
     {
         $git = $this->gitWrapper->cloneRepository($package->getForkSSHRepository(), $package->getFolder());
 
+        // @todo parameters
         $git
             ->config('user.name', 'BOTrelli')
             ->config('user.email', 'botrelli@gmx.com');

@@ -2,11 +2,11 @@
 
 namespace PUGX\Bot\Infrastructure\Package;
 
-use PUGX\Bot\Package\ProviderInterface;
+use PUGX\Bot\Package\PackageRepositoryInterface;
 use Packagist\Api\Client;
 use PUGX\Bot\Package;
 
-class PackagistRepository implements ProviderInterface
+class PackagistRepository implements PackageRepositoryInterface
 {
     private $client;
 
@@ -36,6 +36,16 @@ class PackagistRepository implements ProviderInterface
             throw new \Exception('Repository name not valid');
         }
 
-        return Package::createFromPackage($repo);
+        return $this->createPackage($repo);
+    }
+
+    public function getAllPackages()
+    {
+        return $this->client->all();
+    }
+
+    private function createPackage($apiPackage)
+    {
+       return Package::createFromAPIPackage($apiPackage);
     }
 }

@@ -13,14 +13,16 @@ class Bot
 {
     private $githubUserName;
     private $githubToken;
+    private $githubEmail;
     private $phpCsFixerBin;
     private $dispatcher;
 
-    function __construct($dispatcher, $githubToken, $githubUserName, $privateKeyPath, $phpCsFixerBin = null)
+    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $phpCsFixerBin = null)
     {
         $this->dispatcher = $dispatcher;
         $this->githubToken = $githubToken;
         $this->githubUserName = $githubUserName;
+        $this->githubEmail = $githubEmail;
         $this->privateKeyPath = $privateKeyPath;
         $this->phpCsFixerBin = $phpCsFixerBin;
 
@@ -54,6 +56,8 @@ class Bot
             $step = new Step\MakeAPR($client, new FunnyMessageRepository(), $this->dispatcher);
             $step->execute($localPackage);
         }
+
+        return $localPackage;
     }
 
 
@@ -67,9 +71,6 @@ class Bot
         return preg_replace("[^\w\s\d\.\-_~,;:\[\]\(\]]", '', $dir);
     }
 
-    /**
-     * @return Client
-     */
     private function getAuthenticateGitHubClient()
     {
         $client = new Client();
@@ -90,18 +91,12 @@ class Bot
     {
         $git = new GitWorkingCopy($gitWrapper, $package->getFolder());
         $git
-            ->config('user.name', 'botrelli')
-            ->config('user.email', 'botrelli@gmx.com');
+            ->config('user.name', $this->githubUserName)
+            ->config('user.email', $this->githubEmail);
 
         return $git;
     }
 
-    /**
-     * @param $package
-     * @param $cleaned
-     * @param $suffix
-     * @return string
-     */
     private function getFolderNotExists($folder, $i = 0)
     {
         $folder = $this->cleanDirectory($folder);
@@ -117,5 +112,4 @@ class Bot
 
         return $folderSuffix;
     }
-
 } 

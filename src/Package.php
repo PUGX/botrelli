@@ -2,11 +2,11 @@
 
 namespace PUGX\Bot;
 
-use Packagist\Api\Result\Package as BasePackage;
+use Packagist\Api\Result\Package as APIPackage;
 
-class Package extends BasePackage
+class Package extends APIPackage
 {
-    public static function createFromPackage(BasePackage $package)
+    public static function createFromAPIPackage(APIPackage $package)
     {
         $input = array('name' => $package->name,
         'description' => $package->description,
