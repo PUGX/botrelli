@@ -22,7 +22,9 @@
         "knplabs/packagist-api": "dev-master",
         "knplabs/github-api": "dev-master",
         "cpliakas/git-wrapper": "~1.0",
-        "fabpot/php-cs-fixer": "0.5.4"
+        "fabpot/php-cs-fixer": "0.5.4",
+        "snc/redis-bundle": "~1.1",
+        "predis/predis": "~0.8"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
