@@ -4172,3 +4172,72 @@ pre {
 .select2-results .select2-highlighted {
     background-color: #f34541;
 }
+
+.point-container {
+    margin: 0 auto;
+}
+
+.avatar-right {
+    -webkit-border-radius: 10px;
+    -webkit-border-top-right-radius: 0;
+    -moz-border-radius: 10px;
+    -moz-border-radius-topright: 0;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+}
+
+.avatar-left {
+    -webkit-border-radius: 10px;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius: 10px;
+    -moz-border-radius-bottomleft: 0;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+.top-right {
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.point{
+    font-family: Montserrat;
+    font-size: 5em;
+    -webkit-transition: font-size 0.4s ease;
+    -moz-transition: font-size 0.4s ease;
+    -ms-transition: font-size 0.4s ease;
+    -o-transition: font-size 0.4s ease;
+    transition: font-size 0.4s ease;
+
+
+}
+.point:hover{
+    font-size: 6em;
+}
+.point:hover i{
+    padding: 0 40px;
+}
+
+.point i {
+    color: #f34541;
+    -webkit-transition: padding 0.4s ease;
+    -moz-transition: padding 0.4s ease;
+    -ms-transition: padding 0.4s ease;
+    -o-transition: padding 0.4s ease;
+    transition: padding 0.4s ease;
+}
+
+.point em {
+    font-size: 0.3em;
+}
+
+.battle-title {
+    text-align: center;
+    font-size: 2em;
+}
