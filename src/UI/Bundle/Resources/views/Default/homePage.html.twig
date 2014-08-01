@@ -1,0 +1,157 @@
+{% extends 'PUGXBotUIBundle::base.html.twig' %}
+
+{% block body %}
+<div class="middle-container">
+    <div class="middle-row">
+        <div class="middle-wrapper">
+            <div class="botrelli-container-header">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <div class="text-center">
+                                <h1>
+                                    <i class="fa fa-cogs"></i> botrelli
+                                </h1>
+                                <p class="small">
+                                    This is what 11 nerds could do during an hack-night in Rome.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="botrelli-container container-white">
+                <div class="center container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="text-center">
+                                Can a bot win the PullRequest battle?
+                            </h2>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="point-container">
+                                <img src=" https://avatars1.githubusercontent.com/u/77759" width="200" class="avatar-right avatar pull-left">
+                                <a href="https://github.com/pborreli?tab=activity" ><p class="point top-right">
+                                        <i class="fa fa-caret-left fa-6"></i> {{ borreliPRs }}
+                                    </p></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 vs">
+                            <p class="text-center">
+                                vs
+                            </p>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="point-container">
+                                <a href="https://github.com/botrelli?tab=activity"><p class="point bottom-left">
+                                        {{ botrelliPRs }} <i class="fa fa-caret-right fa-6"></i>
+                                    </p></a>
+                                <img src="https://avatars1.githubusercontent.com/u/8249299" width="200" class="avatar-left avatar pull-right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="botrelli-container-red">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="text-center">
+                                <h2>This troll will <b>FIX</b> the PHP ecosystem.</h2>
+                                <p>
+                                    <span class="small">(faster than pborreli)</span>
+                                    <br><br>
+                                </p>
+                                <p>
+                                    <a class="btn btn-primary btn-lg fix-algorithm" type="button" target="_blank" href="http://github.com/PUGX/botrelli">Help and improve the engine</a>
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <p> <br> </p>
+                            <p>
+                            {% image
+                            '@PUGXBotUIBundle/Resources/public/assets/borreli.png'
+                            %}
+                            <img src="{{ asset_url }}" width="120%">
+                            {% endimage %}
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="botrelli-container container-red">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xs-offset-0 col-xs-12 col-md-offset-1 col-md-10">
+
+                            <h3>Pull Requests</h3>
+
+                            <table class="table table-hover">
+                                <tbody>
+                                {% for PR in PRs %}
+                                    <tr>
+                                        <td><a rel="no-follow" href="{{ PR.getUrl}}">{{ PR.getIdentity }}</a></td>
+                                       <td>
+                                            <img width="50" height="50" src="https://avatars3.githubusercontent.com/u/482501?v=1&amp;s=50" data-user="482501" class="avatar" alt="">
+                                        </td>
+                                        <td>
+                                            <p><b>{{ PR.getRepositoryName|e }}</b></p>
+                                        </td>
+                                        <td>
+                                            <span class="label label-success">{{ PR.getStatus|e }}</span>
+                                        </td>
+                                        <td>
+                                            <p class="small">{{ PR.getFunnyMessage }}</p>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="botrelli-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-offset-0 col-xs-12 col-md-offset-1 col-md-10">
+                        <div>
+
+                            <h3>Contributors</h3>
+
+                            <div class="row text-center">
+                                <div class="col-md-2 col-sm-4 col-xs-8">
+                                    <img data-original-title="john Doe - CEO" title="" data-toggle="tooltip" alt="team" src="https://avatars1.githubusercontent.com/u/530406?v=1&amp;s=60">
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <img data-original-title="Melinda - Manager" title="" data-toggle="tooltip" alt="Melinda - Manager" src="https://avatars0.githubusercontent.com/u/1536800?v=1&amp;s=60">
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <img data-original-title="Erick - Founder" title="" data-toggle="tooltip" alt="Erick - Founder" src="https://avatars0.githubusercontent.com/u/1536800?v=1&amp;s=60">
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <img data-original-title="Edward - Developer" title="" data-toggle="tooltip" alt="Edward - Developer" src="https://avatars0.githubusercontent.com/u/1536800?v=1&amp;s=60">
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <img data-original-title="Kirk - Senior Developer" title="" data-toggle="tooltip" alt="team" src="https://avatars1.githubusercontent.com/u/4598274?v=1&amp;s=60">
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <img data-original-title="Greem - CEO, Founder" title="" data-toggle="tooltip" alt="team" src="https://avatars1.githubusercontent.com/u/530406?v=1&amp;s=60">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

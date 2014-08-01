@@ -19,7 +19,28 @@
         <service id="botrelli.get_random_package" class="PUGX\Bot\Service\GetRandomPackage">
             <argument type="service" id="botrelli.package.repository" />
         </service>
-    </services>
 
+        <service id="botrelli.pull_request.repository" class="PUGX\Bot\Infrastructure\RedisPullRequestRepository">
+            <argument type="service" id="snc_redis.pull_request" />
+        </service>
+
+        <!--Pull Requests use cases-->
+        <service id="botrelli.pull_request.usecase.get_latest_pull_requests" class="PUGX\Bot\PullRequest\UseCase\GetLatestPullRequests">
+            <argument type="service" id="botrelli.pull_request.repository" />
+        </service>
+
+        <service id="botrelli.pull_request.usecase.get_total_prs" class="PUGX\Bot\PullRequest\UseCase\GetTotalPRs">
+            <argument type="service" id="botrelli.pull_request.repository" />
+        </service>
+
+        <service id="botrelli.pull_request.usecase.get_total_borreli_prs" class="PUGX\Bot\PullRequest\UseCase\GetTotalBorreliPRs">
+            <argument>%total_number_of_borreli_pr%</argument>
+        </service>
+
+        <service id="botrelli.pull_request.listener" class="PUGX\Bot\PullRequest\Listener\PullRequestListener">
+            <argument type="service" id="botrelli.pull_request.repository" />
+            <tag name="kernel.event_listener" event="pull_request_made" method="onPullRequestMade" />
+        </service>
+    </services>
 </container>
 

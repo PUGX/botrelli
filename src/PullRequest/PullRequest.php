@@ -1,17 +1,17 @@
 <?php
 
-namespace PUGX\Bot\Events;
+namespace PUGX\Bot\PullRequest;
 
-use Symfony\Component\EventDispatcher\Event;
+use PUGX\Bot\Events\PullRequestMade;
 
-class PullRequestMade extends Event
+class PullRequest
 {
-    private $repositoryName;
-    private $repositoryURL;
-    private $URL;
-    private $status;
-    private $number;
-    private $funnyMessage;
+    protected $repositoryName;
+    protected $repositoryURL;
+    protected $URL;
+    protected $status;
+    protected $number;
+    protected $funnyMessage;
 
     public function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status)
     {
@@ -23,16 +23,19 @@ class PullRequestMade extends Event
         $this->status = $status;
     }
 
-
-    public static function createFromGithubResponse($array, $funnyMessage)
+    public function changeStatus($status)
     {
-        $repositoryName = $array['repo']['full_name'];
-        $repositoryURL = $array['repo']['html_url'];
-        $URL = $array['html_url'];
-        $status = $array['state'];
-        $number = $array['number'];
+        $this->status = $status;
+    }
 
-        return new self($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status);
+    public function getIdentity()
+    {
+        return sprintf('%s#%d', $this->repositoryName, $this->number);
+    }
+
+    public static function createFromPREvent(PullRequestMade $event)
+    {
+        return new self($event->getNumber(), $event->getRepositoryName(), $event->getURL(), $event->getFunnyMessage(), $event->getRepositoryURL(), $event->getStatus());
     }
 
     /**
@@ -59,7 +62,7 @@ class PullRequestMade extends Event
         return $this->number;
     }
 
-     /**
+    /**
      * @return mixed
      */
     public function getRepositoryName()
@@ -81,5 +84,10 @@ class PullRequestMade extends Event
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function getAvatarPath()
+    {
+        return '...';
     }
 }

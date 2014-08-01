@@ -1,4 +1,3 @@
-pugx_botinfrastructure:
-    resource: "@PUGXBotInfrastructureBundle/Resources/config/routing.xml"
+pugx_bot_ui:
+    resource: "@PUGXBotUIBundle/Resources/config/routing.xml"
     prefix:   /
-

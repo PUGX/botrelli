@@ -49,7 +49,7 @@ EOF;
                 'body' => $this->getCommitMessageWithPrefix($message)
             ));
 
-        $this->dispatchEvent(StepsEvents::PULL_REQUEST_MADE, new PullRequestMade($pullRequest));
+        $this->dispatchEvent(StepsEvents::PULL_REQUEST_MADE, PullRequestMade::createFromGithubResponse($pullRequest, $message));
 
         return 201 === $this->client->getHttpClient()->getLastResponse()->getStatusCode();
     }

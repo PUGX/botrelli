@@ -21,3 +21,4 @@ parameters:
     github_credential_email: botrelli@gmx.com
     github_credential_token: 123
     private_key_path:  ~/.ssh/id_rsa
+    total_number_of_borreli_pr: 944

@@ -28,8 +28,8 @@ class BotCommand  extends ContainerAwareCommand
 
         $package  = $this->getPackageFromPackagist($name);
 
-        $text = $bot->execute($package, $dryRun);
-        $output->writeln($text);
+        $package = $bot->execute($package, $dryRun);
+        $output->writeln('World is better now: '. $package->getRepository());
     }
 
     private function getPackageFromPackagist($name)

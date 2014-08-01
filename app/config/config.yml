@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ PUGXBotUIBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -67,3 +67,10 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+snc_redis:
+    clients:
+        pull_request:
+            type: predis
+            alias: pull_request
+            dsn: redis://localhost
