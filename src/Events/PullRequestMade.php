@@ -13,7 +13,7 @@ class PullRequestMade extends Event
     private $number;
     private $funnyMessage;
 
-    private function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status)
+    public function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status)
     {
         $this->URL = $URL;
         $this->funnyMessage = $funnyMessage;
@@ -31,7 +31,6 @@ class PullRequestMade extends Event
         $URL = $array['html_url'];
         $status = $array['state'];
         $number = $array['number'];
-        $funnyMessage = $funnyMessage;
 
         return new self($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status);
     }

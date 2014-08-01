@@ -6,14 +6,14 @@ use PUGX\Bot\Events\PullRequestMade;
 
 class PullRequest
 {
-    private $repositoryName;
-    private $repositoryURL;
-    private $URL;
-    private $status;
-    private $number;
-    private $funnyMessage;
+    protected $repositoryName;
+    protected $repositoryURL;
+    protected $URL;
+    protected $status;
+    protected $number;
+    protected $funnyMessage;
 
-    private function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status)
+    public function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status)
     {
         $this->URL = $URL;
         $this->funnyMessage = $funnyMessage;
@@ -36,5 +36,58 @@ class PullRequest
     public static function createFromPREvent(PullRequestMade $event)
     {
         return new self($event->getNumber(), $event->getRepositoryName(), $event->getURL(), $event->getFunnyMessage(), $event->getRepositoryURL(), $event->getStatus());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getURL()
+    {
+        return $this->URL;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFunnyMessage()
+    {
+        return $this->funnyMessage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRepositoryURL()
+    {
+        return $this->repositoryURL;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getAvatarPath()
+    {
+        return '...';
     }
 }
