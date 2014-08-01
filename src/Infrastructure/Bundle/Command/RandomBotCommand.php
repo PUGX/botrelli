@@ -8,14 +8,15 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class BotCommand  extends ContainerAwareCommand
+class RandomBotCommand  extends ContainerAwareCommand
 {
+    private $allPackages;
+
     protected function configure()
     {
         $this
-            ->setName('botrelli:cs')
-            ->setDescription('Make a Pull Request on the given repo')
-            ->addArgument('repository', InputArgument::REQUIRED, 'Packagist repository name.')
+            ->setName('botrelli:random')
+            ->setDescription('Make a Pull Request on a random repo')
             ->addOption('dry-run', 'dr', InputOption::VALUE_NONE, 'Execute without making the final PR')
         ;
     }
@@ -23,22 +24,17 @@ class BotCommand  extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bot = $this->getBot();
-        $name = $input->getArgument('repository');
         $dryRun = $input->getOption('dry-run');
 
-        $package  = $this->getPackageFromPackagist($name);
+        $package  = $this->getRandomPackageFromPackagist();
 
         $text = $bot->execute($package, $dryRun);
-        $output->writeln($text);
+        $output->writeln('World is better now: '. $package->getRepository());
     }
 
-    private function getPackageFromPackagist($name)
+    private function getRandomPackageFromPackagist()
     {
-        return $this
-            ->getContainer()
-            ->get('botrelli.package.repository')
-            ->get($name)
-        ;
+        return $this->getContainer()->get('botrelli.get_random_package')->getRandomPackage();
     }
 
     private function getBot()

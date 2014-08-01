@@ -4,20 +4,25 @@ namespace PUGX\Bot;
 
 use Github\Client;
 use GitWrapper\GitWrapper;
+use GitWrapper\GitWorkingCopy;
 use PUGX\Bot\Infrastructure\FunnyMessageRepository;
-use PUGX\Bot\UseCase;
+use PUGX\Bot\Step;
 use PUGX\Bot\Package;
 
 class Bot
 {
     private $githubUserName;
     private $githubToken;
+    private $githubEmail;
     private $phpCsFixerBin;
+    private $dispatcher;
 
-    function __construct($githubToken, $githubUserName, $privateKeyPath, $phpCsFixerBin = null)
+    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $phpCsFixerBin = null)
     {
+        $this->dispatcher = $dispatcher;
         $this->githubToken = $githubToken;
         $this->githubUserName = $githubUserName;
+        $this->githubEmail = $githubEmail;
         $this->privateKeyPath = $privateKeyPath;
         $this->phpCsFixerBin = $phpCsFixerBin;
 
@@ -26,31 +31,33 @@ class Bot
         }
     }
 
-    public function execute(Package $package, $dryrun = false)
+    public function execute(Package $package, $dryRun = false)
     {
         $client  = $this->getAuthenticateGitHubClient();
         $gitWrapper = $this->getGitWrapper();
 
-        $useCase = new UseCase\ForkPackage($client);
-        $repository = $useCase->execute($package);
+        $step = new Step\ForkPackage($client, $this->dispatcher);
+        $repository = $step->execute($package);
 
         $localPackage =  new LocalPackage($repository, $this->sanitizeLocallyDir($package), $package);
 
-        $useCase      = new UseCase\CloneLocally($gitWrapper);
-        $useCase->execute($localPackage);
+        $step      = new Step\CloneLocally($gitWrapper, $this->dispatcher);
+        $step->execute($localPackage);
 
-        $useCase = new UseCase\ExecuteCSFixer($this->phpCsFixerBin, 4000);
-        $useCase->execute($localPackage);
+        $step = new Step\ExecuteCSFixer($this->phpCsFixerBin, 4000, $this->dispatcher);
+        $step->execute($localPackage);
 
-         if(!$dryrun){
+         if(!$dryRun){
 
-            $useCase = new UseCase\CommitAndPush($gitWrapper);
-            $useCase->execute($localPackage);
+            $step = new Step\CommitAndPush($this->dispatcher);
+            $git =  $this->getGitWorking($gitWrapper, $localPackage);
+            $step->execute($git, $localPackage);
 
-            $useCase = new UseCase\MakeAPR($client, new FunnyMessageRepository());
-            $useCase->execute($localPackage);
+            $step = new Step\MakeAPR($client, new FunnyMessageRepository(), $this->dispatcher);
+            $step->execute($localPackage);
         }
 
+        return $localPackage;
     }
 
 
@@ -64,9 +71,6 @@ class Bot
         return preg_replace("[^\w\s\d\.\-_~,;:\[\]\(\]]", '', $dir);
     }
 
-    /**
-     * @return Client
-     */
     private function getAuthenticateGitHubClient()
     {
         $client = new Client();
@@ -87,25 +91,19 @@ class Bot
     {
         $git = new GitWorkingCopy($gitWrapper, $package->getFolder());
         $git
-            ->config('user.name', 'botrelli')
-            ->config('user.email', 'botrelli@gmx.com');
+            ->config('user.name', $this->githubUserName)
+            ->config('user.email', $this->githubEmail);
 
         return $git;
     }
 
-    /**
-     * @param $package
-     * @param $cleaned
-     * @param $suffix
-     * @return string
-     */
     private function getFolderNotExists($folder, $i = 0)
     {
         $folder = $this->cleanDirectory($folder);
         $folderSuffix = $folder;
 
         if ($i != 0) {
-            $folderSuffix .= '-'.$i;
+            $folderSuffix .= '-'.$i.rand(0, PHP_INT_MAX);
         }
 
         if (file_exists($folderSuffix)) {
@@ -114,5 +112,4 @@ class Bot
 
         return $folderSuffix;
     }
-
 } 

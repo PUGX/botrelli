@@ -27,12 +27,12 @@ I think that is a funny way to spent time together, so yes both.
 
 4) phpunit -c app
 
-5)
+or lunch the command app/console
 
-
-## The Flow:
+## The Use case:
 
 
 Take a look to:
 
     src/Bot.php
+

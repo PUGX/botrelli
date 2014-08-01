@@ -1,20 +1,25 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <!--
-    <parameters>
-        <parameter key="pugx_botinfrastructure.example.class">PUGX\Bot\Infrastructure\Bundle\Example</parameter>
-    </parameters>
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="pugx_botinfrastructure.example" class="%pugx_botinfrastructure.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="botrelli.package.repository" class="PUGX\Bot\Infrastructure\Package\PackagistRepository">
+        </service>
+
+        <service id="botrelli.bot" class="PUGX\Bot\Bot">
+            <argument type="service" id="event_dispatcher" />
+            <argument>%github_credential_username%</argument>
+            <argument>%github_credential_token%</argument>
+            <argument>%github_credential_email%</argument>
+            <argument>%private_key_path%</argument>
+        </service>
+
+        <service id="botrelli.get_random_package" class="PUGX\Bot\Service\GetRandomPackage">
+            <argument type="service" id="botrelli.package.repository" />
         </service>
     </services>
-    -->
+
 </container>
+
