@@ -18,6 +18,7 @@ set :model_manager, "doctrine"
 set  :keep_releases,  3
 set  :use_sudo,       false
 set :use_composer, true
+set :dump_assetic_assets, true
 
 
 set :repository,  "git@github.com:PUGX/botrelli.git"
@@ -34,3 +35,13 @@ set  :keep_releases,  3
 logger.level = Logger::MAX_LEVEL
 
 set :shared_files,      ["app/config/parameters.yml"]
+
+after "deploy:create_symlink", "deploy:chmod_to_git"
+
+namespace :deploy do
+  task :chmod_to_git, :roles => :web do
+    base = release_path + "/"
+    run "chmod +x #{base}vendor/cpliakas/git-wrapper/bin/git-ssh-wrapper.sh"
+  end
+end
+
