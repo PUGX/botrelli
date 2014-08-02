@@ -8,7 +8,7 @@ class GetTotalPRs
 {
     private $repository;
 
-    function __construct(PullRequestRepositoryReaderInterface $repository)
+    public function __construct(PullRequestRepositoryReaderInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -17,4 +17,4 @@ class GetTotalPRs
     {
         return $this->repository->countPRMade();
     }
-} 
+}

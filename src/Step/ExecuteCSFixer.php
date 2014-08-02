@@ -47,8 +47,8 @@ class ExecuteCSFixer extends DispatcherStep
     }
 
     /**
-     * @param  LocalPackage $package
-     * @param  array $options
+     * @param LocalPackage $package
+     * @param array        $options
      *
      * @return Process
      */
@@ -58,8 +58,8 @@ class ExecuteCSFixer extends DispatcherStep
     }
 
     /**
-     * @param  LocalPackage $package
-     * @param  array $options
+     * @param LocalPackage $package
+     * @param array        $options
      *
      * @return string
      */
@@ -69,7 +69,7 @@ class ExecuteCSFixer extends DispatcherStep
     }
 
     /**
-     * @param  array $options
+     * @param array $options
      *
      * @return string
      */
@@ -83,4 +83,4 @@ class ExecuteCSFixer extends DispatcherStep
 
         return $stringedOptions;
     }
-} 
+}

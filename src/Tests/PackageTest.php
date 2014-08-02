@@ -2,7 +2,6 @@
 
 namespace PUGX\Bot\Tests;
 
-
 use PUGX\Bot\Package;
 
 class PackageTest extends \PHPUnit_Framework_TestCase
@@ -26,4 +25,4 @@ class PackageTest extends \PHPUnit_Framework_TestCase
         $package->fromArray(array('name' => 'pugX/botRelli'));
         $this->assertEquals('botRelli', $package->getRepoName());
     }
-} 
+}

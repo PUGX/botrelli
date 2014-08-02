@@ -27,7 +27,6 @@ class PullRequestMade extends Event
         $this->avatarUrl = $avatarUrl;
     }
 
-
     public static function createFromGithubResponse($array, $funnyMessage, $localPath)
     {
         $repositoryName = $array['base']['repo']['full_name'];

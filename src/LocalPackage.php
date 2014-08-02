@@ -10,7 +10,7 @@ class LocalPackage extends AbstractResult
     protected $package;
     protected $fork;
 
-    function __construct($fork, $folder, Package $package)
+    public function __construct($fork, $folder, Package $package)
     {
         $this->folder = $folder;
         $this->package = $package;

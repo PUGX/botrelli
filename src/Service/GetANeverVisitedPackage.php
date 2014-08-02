@@ -4,7 +4,6 @@ namespace PUGX\Bot\Service;
 
 use PUGX\Bot\Package\PackageRepositoryInterface;
 
-
 class GetANeverVisitedPackage
 {
     private $repository;
@@ -23,4 +22,4 @@ class GetANeverVisitedPackage
 
         return $this->allPackages[array_rand($this->allPackages)];
     }
-} 
+}

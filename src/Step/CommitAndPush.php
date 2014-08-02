@@ -28,4 +28,4 @@ class CommitAndPush extends DispatcherStep
     {
        return 'CS Fixes';
     }
-} 
+}

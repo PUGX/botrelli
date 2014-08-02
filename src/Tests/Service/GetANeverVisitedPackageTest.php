@@ -2,8 +2,6 @@
 
 namespace PUGX\Bot\Tests\Service;
 
-use PUGX\Bot\Service\GetANeverVisitedPackage;
-
 class GetANeverVisitedPackageTest extends \PHPUnit_Framework_TestCase
 {
     /**

@@ -4,7 +4,6 @@ namespace PUGX\Bot\Package;
 
 interface PackageReaderInterface
 {
-    function get($package);
+    public function get($package);
 //    function getANeverVisitedPackage();
 }
- 

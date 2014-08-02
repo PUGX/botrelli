@@ -7,4 +7,4 @@ interface PullRequestRepositoryReaderInterface
     public function getOpened();
     public function getAllDesc();
     public function countPRMade();
-} 
+}
