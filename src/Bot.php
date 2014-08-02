@@ -16,8 +16,9 @@ class Bot
     private $githubEmail;
     private $phpCsFixerBin;
     private $dispatcher;
+    private $tempDirectory;
 
-    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $phpCsFixerBin = null)
+    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $phpCsFixerBin = null, $tempDirectory = '/tmp')
     {
         $this->dispatcher = $dispatcher;
         $this->githubToken = $githubToken;
@@ -25,6 +26,7 @@ class Bot
         $this->githubEmail = $githubEmail;
         $this->privateKeyPath = $privateKeyPath;
         $this->phpCsFixerBin = $phpCsFixerBin;
+        $this->tempDirectory = $tempDirectory;
 
         if (null === $this->phpCsFixerBin) {
             $this->phpCsFixerBin = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'php-cs-fixer';
@@ -60,10 +62,9 @@ class Bot
         return $localPackage;
     }
 
-
     private function sanitizeLocallyDir($package)
     {
-        return $this->getFolderNotExists(sys_get_temp_dir() . DIRECTORY_SEPARATOR . $package->getName());
+        return $this->getFolderNotExists($this->tempDirectory . DIRECTORY_SEPARATOR . $package->getName());
     }
 
     private function cleanDirectory($dir)
