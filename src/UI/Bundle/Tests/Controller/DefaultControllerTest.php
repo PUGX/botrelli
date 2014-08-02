@@ -10,9 +10,10 @@ class DefaultControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $eventDispatcher = $client->getContainer()->get('event_dispatcher');
-        $prMade = new \PUGX\Bot\Events\PullRequestMade(1, 'pugx/botrelli', 'https://github.com/pugx/botrelli', 'feel the force', 'git...', 'active');
+        $prMade = new \PUGX\Bot\Events\PullRequestMade(1, 'pugx/botrelli', 'https://github.com/pugx/botrelli', 'feel the force', 'git...', 'active', '/tmp/a', '');
 
-        $eventDispatcher->dispatch(StepsEvents::PULL_REQUEST_MADE, $prMade);
+        $eventDispatcher->dispatch(StepsEvents::PULL_REQUEST_MADE,
+            $prMade);
         $crawler = $client->request('GET', '/');
         $this->assertTrue($crawler->filter('html:contains("pugx")')->count() > 0);
     }

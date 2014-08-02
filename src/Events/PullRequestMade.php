@@ -12,8 +12,10 @@ class PullRequestMade extends Event
     private $status;
     private $number;
     private $funnyMessage;
+    private $localPath;
+    private $avatarUrl;
 
-    public function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status)
+    public function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status, $localPath, $avatarUrl)
     {
         $this->URL = $URL;
         $this->funnyMessage = $funnyMessage;
@@ -21,18 +23,22 @@ class PullRequestMade extends Event
         $this->repositoryName = $repositoryName;
         $this->repositoryURL = $repositoryURL;
         $this->status = $status;
+        $this->localPath = $localPath;
+        $this->avatarUrl = $avatarUrl;
     }
 
 
-    public static function createFromGithubResponse($array, $funnyMessage)
+    public static function createFromGithubResponse($array, $funnyMessage, $localPath)
     {
-        $repositoryName = $array['repo']['full_name'];
-        $repositoryURL = $array['repo']['html_url'];
+        $repositoryName = $array['base']['repo']['full_name'];
+        $repositoryURL = $array['base']['repo']['html_url'];
         $URL = $array['html_url'];
         $status = $array['state'];
         $number = $array['number'];
+        $avatarUrl = $array['base']['avatar_url'];
 
-        return new self($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status);
+
+        return new self($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status, $localPath, $avatarUrl);
     }
 
     /**
@@ -82,4 +88,21 @@ class PullRequestMade extends Event
     {
         return $this->status;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLocalPath()
+    {
+        return $this->localPath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvatarUrl()
+    {
+        return $this->avatarUrl;
+    }
+
 }

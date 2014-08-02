@@ -26,6 +26,11 @@ class MakeAPR extends DispatcherStep
 
 EOF;
 
+    const SUFFIX = <<< EOF
+
+More info at [botrelli.pugx.org](http://botrelli.pugx.org).
+EOF;
+
     private $messageRepository;
     private $client;
 
@@ -49,7 +54,7 @@ EOF;
                 'body' => $this->getCommitMessageWithPrefix($message)
             ));
 
-        $this->dispatchEvent(StepsEvents::PULL_REQUEST_MADE, PullRequestMade::createFromGithubResponse($pullRequest, $message));
+        $this->dispatchEvent(StepsEvents::PULL_REQUEST_MADE, PullRequestMade::createFromGithubResponse($pullRequest, $message, $package->getFolder()));
 
         return 201 === $this->client->getHttpClient()->getLastResponse()->getStatusCode();
     }

@@ -43,7 +43,7 @@ class Bot
 
         $step      = new Step\CloneLocally($gitWrapper, $this->dispatcher);
         $step->execute($localPackage);
-
+x
         $step = new Step\ExecuteCSFixer($this->phpCsFixerBin, 4000, $this->dispatcher);
         $step->execute($localPackage);
 
