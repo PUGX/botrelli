@@ -18,15 +18,15 @@ class Bot
     private $dispatcher;
     private $tempDirectory;
 
-    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $phpCsFixerBin = null, $tempDirectory = '/tmp')
+    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $tempDirectory = '/tmp', $phpCsFixerBin = null)
     {
         $this->dispatcher = $dispatcher;
         $this->githubToken = $githubToken;
         $this->githubUserName = $githubUserName;
         $this->githubEmail = $githubEmail;
         $this->privateKeyPath = $privateKeyPath;
-        $this->phpCsFixerBin = $phpCsFixerBin;
         $this->tempDirectory = $tempDirectory;
+        $this->phpCsFixerBin = $phpCsFixerBin;
 
         if (null === $this->phpCsFixerBin) {
             $this->phpCsFixerBin = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'php-cs-fixer';
