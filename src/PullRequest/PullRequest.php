@@ -12,8 +12,9 @@ class PullRequest
     protected $status;
     protected $number;
     protected $funnyMessage;
+    protected $avatarUrl;
 
-    public function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status)
+    public function __construct($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status, $avatarUrl)
     {
         $this->URL = $URL;
         $this->funnyMessage = $funnyMessage;
@@ -21,6 +22,7 @@ class PullRequest
         $this->repositoryName = $repositoryName;
         $this->repositoryURL = $repositoryURL;
         $this->status = $status;
+        $this->avatarUrl = $avatarUrl;
     }
 
     public function changeStatus($status)
@@ -35,7 +37,7 @@ class PullRequest
 
     public static function createFromPREvent(PullRequestMade $event)
     {
-        return new self($event->getNumber(), $event->getRepositoryName(), $event->getURL(), $event->getFunnyMessage(), $event->getRepositoryURL(), $event->getStatus());
+        return new self($event->getNumber(), $event->getRepositoryName(), $event->getURL(), $event->getFunnyMessage(), $event->getRepositoryURL(), $event->getStatus(), $event->getAvatarUrl());
     }
 
     /**
@@ -86,8 +88,8 @@ class PullRequest
         return $this->status;
     }
 
-    public function getAvatarPath()
+    public function getAvatarUrl()
     {
-        return '...';
+        return $this->avatarUrl;
     }
 }

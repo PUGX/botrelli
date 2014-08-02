@@ -26,10 +26,11 @@ class MakeAPR extends DispatcherStep
 
 EOF;
 
-    const SUFFIX = <<< EOF
+    const SUFFIX = '
 
-More info at [botrelli.pugx.org](http://botrelli.pugx.org).
-EOF;
+
+I\'m a [bot](http://botrelli.pugx.org)';
+
 
     private $messageRepository;
     private $client;
@@ -61,7 +62,7 @@ EOF;
 
     private function getCommitMessageWithPrefix($message)
     {
-        return self::PREFIX . $message;
+        return self::PREFIX . $message  . self::SUFFIX;
     }
 
     private function getCommitTitle()

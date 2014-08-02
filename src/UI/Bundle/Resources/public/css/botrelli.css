@@ -76,6 +76,12 @@ h6 {
 h1 [class^="icon-"] {
     color: #f34541;
 }
+
+.battle-name p  {
+    font-size: 20px;
+    margin: 24px 0 0;
+}
+
 .page-header {
     background: none repeat scroll 0 0 white;
     border-bottom-color: #dddddd;

@@ -35,8 +35,7 @@ class PullRequestMade extends Event
         $URL = $array['html_url'];
         $status = $array['state'];
         $number = $array['number'];
-        $avatarUrl = $array['base']['avatar_url'];
-
+        $avatarUrl = $array['base']['user']['avatar_url'];
 
         return new self($number, $repositoryName, $URL, $funnyMessage, $repositoryURL, $status, $localPath, $avatarUrl);
     }
@@ -104,5 +103,4 @@ class PullRequestMade extends Event
     {
         return $this->avatarUrl;
     }
-
 }

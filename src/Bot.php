@@ -16,14 +16,16 @@ class Bot
     private $githubEmail;
     private $phpCsFixerBin;
     private $dispatcher;
+    private $tempDirectory;
 
-    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $phpCsFixerBin = null)
+    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $tempDirectory = '/tmp', $phpCsFixerBin = null)
     {
         $this->dispatcher = $dispatcher;
         $this->githubToken = $githubToken;
         $this->githubUserName = $githubUserName;
         $this->githubEmail = $githubEmail;
         $this->privateKeyPath = $privateKeyPath;
+        $this->tempDirectory = $tempDirectory;
         $this->phpCsFixerBin = $phpCsFixerBin;
 
         if (null === $this->phpCsFixerBin) {
@@ -33,17 +35,20 @@ class Bot
 
     public function execute(Package $package, $dryRun = false)
     {
+
         $client  = $this->getAuthenticateGitHubClient();
         $gitWrapper = $this->getGitWrapper();
 
         $step = new Step\ForkPackage($client, $this->dispatcher);
         $repository = $step->execute($package);
 
+        sleep(180);
+
         $localPackage =  new LocalPackage($repository, $this->sanitizeLocallyDir($package), $package);
 
         $step      = new Step\CloneLocally($gitWrapper, $this->dispatcher);
         $step->execute($localPackage);
-x
+
         $step = new Step\ExecuteCSFixer($this->phpCsFixerBin, 4000, $this->dispatcher);
         $step->execute($localPackage);
 
@@ -60,10 +65,9 @@ x
         return $localPackage;
     }
 
-
     private function sanitizeLocallyDir($package)
     {
-        return $this->getFolderNotExists(sys_get_temp_dir() . DIRECTORY_SEPARATOR . $package->getName());
+        return $this->getFolderNotExists($this->tempDirectory . DIRECTORY_SEPARATOR . $package->getName());
     }
 
     private function cleanDirectory($dir)
