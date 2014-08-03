@@ -28,6 +28,7 @@ class FunnyMessageRepository implements MessageRepositoryInterface
         $messages[] = new Message("> [Luke:] I can’t believe it. [Yoda:] That is why you fail.\n cit. Yoda");
         $messages[] = new Message("> PATIENCE YOU MUST HAVE my young padawan.\n cit. Yoda");
         $messages[] = new Message("> Feel the force.\n cit. Yoda");
+        $messages[] = new Message("Rumor has it that there is something called PSR ...");
 
         $this->messages = $messages;
     }
@@ -40,7 +41,6 @@ class FunnyMessageRepository implements MessageRepositoryInterface
     public function fetch()
     {
        $i = rand(0, sizeof($this->messages)-1);
-
        return $this->messages[$i];
     }
 

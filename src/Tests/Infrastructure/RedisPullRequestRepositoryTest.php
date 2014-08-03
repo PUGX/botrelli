@@ -35,7 +35,7 @@ class RedisPullRequestRepositoryTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldSaveAndGetAllPR()
     {
-        $pr = new PullRequest(1,2,3,4,5,6);
+        $pr = new PullRequest(1,2,3,4,5,6,7);
 
         $this->repository->save($pr);
         $all = $this->repository->getAllDesc();
