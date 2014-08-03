@@ -66,6 +66,7 @@
             <div class="botrelli-container-red">
                 <div class="container">
                     <div class="row">
+
                         <div class="col-sm-6 col-sm-offset-3">
                             <div class="text-center">
                                 <h2>This troll will <b>FIX</b> the PHP ecosystem.</h2>
@@ -96,7 +97,7 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-xs-offset-0 col-xs-12 col-md-offset-1 col-md-10">
+                        <div class="col-xs-12 col-md-10">
 
                             <h3>Pull Requests</h3>
 
@@ -104,7 +105,7 @@
                                 <tbody>
                                 {% for PR in PRs %}
                                     <tr>
-                                        <td><a rel="no-follow" href="{{ PR.getUrl}}">{{ PR.getIdentity }}</a></td>
+                                        <td><a rel="no-follow" href="{{ PR.getUrl}}" target="_blank">{{ PR.getIdentity }}</a></td>
                                        <td>
                                             <img width="50" height="50" src="{{ PR.getAvatarUrl }}" class="avatar" alt="">
                                         </td>
@@ -122,6 +123,14 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-2 col-xs-2">
+                            <h3>They said</h3>
+                            <a class="twitter-timeline"  href="https://twitter.com/search?q=botrelli"  data-widget-id="495719640228569088">Tweets about "botrelli"</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,32 +138,88 @@
         <div class="botrelli-container">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-offset-0 col-xs-12 col-md-offset-1 col-md-10">
+                    <div class="col-sm-12">
                         <div>
 
                             <h3>thanks to: <a href="https://github.com/PUGX/botrelli/graphs/contributors">Contributors</a></h3>
 
-                            {#<div class="row text-center">#}
-                                {#<div class="col-md-2 col-sm-4 col-xs-8">#}
-                                    {#<img data-original-title="john Doe - CEO" title="" data-toggle="tooltip" alt="team" src="https://avatars1.githubusercontent.com/u/530406?v=1&amp;s=60">#}
-                                {#</div>#}
-                                {#<div class="col-md-2 col-sm-4 col-xs-12">#}
-                                    {#<img data-original-title="Melinda - Manager" title="" data-toggle="tooltip" alt="Melinda - Manager" src="https://avatars0.githubusercontent.com/u/1536800?v=1&amp;s=60">#}
-                                {#</div>#}
-                                {#<div class="col-md-2 col-sm-4 col-xs-12">#}
-                                    {#<img data-original-title="Erick - Founder" title="" data-toggle="tooltip" alt="Erick - Founder" src="https://avatars0.githubusercontent.com/u/1536800?v=1&amp;s=60">#}
-                                {#</div>#}
-                                {#<div class="col-md-2 col-sm-4 col-xs-12">#}
-                                    {#<img data-original-title="Edward - Developer" title="" data-toggle="tooltip" alt="Edward - Developer" src="https://avatars0.githubusercontent.com/u/1536800?v=1&amp;s=60">#}
-                                {#</div>#}
-                                {#<div class="col-md-2 col-sm-4 col-xs-12">#}
-                                    {#<img data-original-title="Kirk - Senior Developer" title="" data-toggle="tooltip" alt="team" src="https://avatars1.githubusercontent.com/u/4598274?v=1&amp;s=60">#}
-                                {#</div>#}
-                                {#<div class="col-md-2 col-sm-4 col-xs-12">#}
-                                    {#<img data-original-title="Greem - CEO, Founder" title="" data-toggle="tooltip" alt="team" src="https://avatars1.githubusercontent.com/u/530406?v=1&amp;s=60">#}
-                                {#</div>#}
-                            {#</div>#}
+                            <div class="row text-center">
 
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/liuggio" target="_blank"><img src="https://avatars1.githubusercontent.com/u/530406?v=1&amp;s=110">
+                                    <p><b>@liuggio</b></p>
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/marco-loche" target="_blank"><img src="https://avatars1.githubusercontent.com/u/1536800?v=1&s=110">
+                                        <p><b>@marco-loche</b></p>
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/toretto460" target="_blank"><img src="https://avatars0.githubusercontent.com/u/1193857?v=1&s=110">
+                                        <p><b>@toretto460</b></p>
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/bigfoot90" target="_blank"><img src="https://avatars1.githubusercontent.com/u/4598274?v=1&s=110">
+                                        <p><b>@bigfoot90</b></p>
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/" target="_blank"><img src="https://avatars0.githubusercontent.com/u/2378579?v=1&s=110">
+                                        <p><b>@claudio-dalicandro</b></p>
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/magobaol" target="_blank"><img src="https://avatars0.githubusercontent.com/u/1880350?v=1&s=110">
+                                        <p><b>@magobaol</b></p>
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/JellyBellyDev" target="_blank"><img src="https://avatars2.githubusercontent.com/u/190820?v=1&s=110">
+                                        <p><b>@JellyBellyDev</b></p>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/takeno" target="_blank"><img src="https://avatars0.githubusercontent.com/u/1499063?v=1&s=110">
+                                        <p><b>@takeno</b></p>
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/giorrrgio" target="_blank"><img src="https://avatars3.githubusercontent.com/u/482501?v=1&s=110">
+                                        <p><b>@giorrrgio</b></p>
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/leopro" target="_blank"><img src="https://avatars0.githubusercontent.com/u/1370900?v=1&s=110">
+                                        <p><b>@leopro</b></p>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                    <a href="http://github.com/botrelli" target="_blank"><img src="https://avatars1.githubusercontent.com/u/8249299?v=1&s=96">
+                                        <p><b>@botrelli</b></p>
+                                    </a>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
