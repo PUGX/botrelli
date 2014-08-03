@@ -24,3 +24,5 @@ parameters:
     total_number_of_borreli_pr: 944
     temp_dir: /tmp
     ga_tracking: UA-xxxxx-x
+    mongodb_server: mongodb://localhost:27017
+    mongodb_default_db: botrelli

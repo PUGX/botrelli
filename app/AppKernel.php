@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new PUGX\Bot\Infrastructure\Bundle\PUGXBotInfrastructureBundle(),
             new PUGX\Bot\UI\Bundle\PUGXBotUIBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
+            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
 
         );
 

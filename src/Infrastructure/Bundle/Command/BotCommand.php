@@ -28,6 +28,11 @@ class BotCommand  extends ContainerAwareCommand
 
         $package  = $this->getPackageFromPackagist($name);
 
+        if (null === $package) {
+            $output->writeln("<error>Package not found</error>");
+            return;
+        }
+
         $package = $bot->execute($package, $dryRun);
         $output->writeln('World is better now: '. $package->getRepository());
     }
@@ -36,7 +41,7 @@ class BotCommand  extends ContainerAwareCommand
     {
         return $this
             ->getContainer()
-            ->get('botrelli.package.repository')
+            ->get('botrelli.package.doctrine.repository')
             ->get($name)
         ;
     }

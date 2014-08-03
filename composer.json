@@ -24,7 +24,9 @@
         "cpliakas/git-wrapper": "~1.0",
         "fabpot/php-cs-fixer": "0.5.4",
         "snc/redis-bundle": "~1.1",
-        "predis/predis": "~0.8"
+        "predis/predis": "~0.8",
+        "doctrine/mongodb-odm": "1.0.*@dev",
+        "doctrine/mongodb-odm-bundle": "3.0.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
