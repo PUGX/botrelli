@@ -8,4 +8,3 @@ interface PackageWriterInterface
 {
 //    function write(Package $package);
 }
- 

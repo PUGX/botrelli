@@ -10,7 +10,7 @@ class PullRequestListener
 {
     private $repository;
 
-    function __construct(PullRequestRepositoryWriterInterface $repository)
+    public function __construct(PullRequestRepositoryWriterInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -28,4 +28,4 @@ class PullRequestListener
     {
         $this->repository->incrementNumberOfPRMade();
     }
-} 
+}

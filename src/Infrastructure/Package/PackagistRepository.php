@@ -10,7 +10,7 @@ class PackagistRepository implements PackageRepositoryInterface
 {
     private $client;
 
-    function __construct($client = null)
+    public function __construct($client = null)
     {
         $this->client = $client;
 

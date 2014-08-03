@@ -22,4 +22,4 @@ class GetLatestPullRequestsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array(1), $pr->getLatestPullRequest());
     }
-} 
+}

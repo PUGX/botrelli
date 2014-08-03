@@ -6,8 +6,6 @@ use Github\Client;
 use GitWrapper\GitWrapper;
 use GitWrapper\GitWorkingCopy;
 use PUGX\Bot\Infrastructure\FunnyMessageRepository;
-use PUGX\Bot\Step;
-use PUGX\Bot\Package;
 
 class Bot
 {
@@ -18,7 +16,7 @@ class Bot
     private $dispatcher;
     private $tempDirectory;
 
-    function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $tempDirectory = '/tmp', $phpCsFixerBin = null)
+    public function __construct($dispatcher, $githubToken, $githubUserName, $githubEmail, $privateKeyPath, $tempDirectory = '/tmp', $phpCsFixerBin = null)
     {
         $this->dispatcher = $dispatcher;
         $this->githubToken = $githubToken;
@@ -52,7 +50,7 @@ class Bot
         $step = new Step\ExecuteCSFixer($this->phpCsFixerBin, 4000, $this->dispatcher);
         $step->execute($localPackage);
 
-         if(!$dryRun){
+         if (!$dryRun) {
 
             $step = new Step\CommitAndPush($this->dispatcher);
             $git =  $this->getGitWorking($gitWrapper, $localPackage);
@@ -116,4 +114,4 @@ class Bot
 
         return $folderSuffix;
     }
-} 
+}

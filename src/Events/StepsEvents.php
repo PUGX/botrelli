@@ -2,7 +2,6 @@
 
 namespace PUGX\Bot\Events;
 
-
 class StepsEvents
 {
     const REPOSITORY_FORKED = 'repository_forked';
@@ -21,4 +20,4 @@ class StepsEvents
     const CS_FIXER_EXECUTED = 'cs_fixer_executed';
 
     const PULL_REQUEST_MADE = 'pull_request_made';
-} 
+}

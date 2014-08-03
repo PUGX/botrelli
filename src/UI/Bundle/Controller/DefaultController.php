@@ -14,7 +14,6 @@ class DefaultController extends Controller
 
         $borreliPRs = $this->container->get('botrelli.pull_request.usecase.get_total_borreli_prs');
 
-
         $array = array(
             'PRs' => $prList->getLatestPullRequest(),
             'botrelliPRs' => $botrelliPRs->getTotalPR(),
@@ -23,6 +22,5 @@ class DefaultController extends Controller
 
         return $this->render('PUGXBotUIBundle:Default:homePage.html.twig', $array);
     }
-
 
 }

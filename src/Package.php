@@ -31,6 +31,7 @@ class Package extends APIPackage
     public function getUsername()
     {
         $sp = $this->splitName();
+
         return $sp[0];
     }
 
@@ -40,6 +41,7 @@ class Package extends APIPackage
     public function getRepoName()
     {
         $sp = $this->splitName();
+
         return $sp[1];
     }
 
@@ -50,4 +52,4 @@ class Package extends APIPackage
     {
         return explode("/", $this->getName());
     }
-} 
+}
