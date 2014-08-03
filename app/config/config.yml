@@ -76,3 +76,22 @@ snc_redis:
             type: predis
             alias: pull_request
             dsn: redis://localhost
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: "%mongodb_server%"
+            options: {}
+    default_database: "%mongodb_default_db%"
+    document_managers:
+        default:
+            auto_mapping: false
+            mappings:
+               PUGXBotPackage:
+                  type: xml
+                  prefix: PUGX\Bot
+                  dir: %kernel.root_dir%/../src/Infrastructure/Bundle/Resources/config/doctrine/botrelli
+               PackagistPackage:
+                  type: xml
+                  prefix: Packagist\Api\Result
+                  dir: %kernel.root_dir%/../src/Infrastructure/Bundle/Resources/config/doctrine/packagist

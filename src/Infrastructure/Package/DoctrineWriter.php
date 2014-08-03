@@ -4,9 +4,8 @@ namespace PUGX\Bot\Infrastructure\Package;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use PUGX\Bot\Package;
-use PUGX\Bot\Package\PackageWriterInterface;
 
-class DoctrinePackageWriter implements PackageWriterInterface
+class DoctrineWriter implements Package\PackageWriterInterface
 {
     private $manager;
 

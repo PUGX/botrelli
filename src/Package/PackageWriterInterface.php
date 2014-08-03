@@ -6,5 +6,5 @@ use PUGX\Bot\Package;
 
 interface PackageWriterInterface
 {
-//    function write(Package $package);
+    function write(Package $package);
 }

@@ -2,9 +2,9 @@
 
 namespace PUGX\Bot\Infrastructure\Tests\Package;
 
-use PUGX\Bot\Infrastructure\Package\DoctrinePackageWriter;
+use PUGX\Bot\Infrastructure\Package\DoctrineWriter;
 
-class DoctrinePackageWriterTest extends \PHPUnit_Framework_TestCase
+class DoctrineWriterTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -27,7 +27,7 @@ class DoctrinePackageWriterTest extends \PHPUnit_Framework_TestCase
             ->method('flush')
             ->with($package);
 
-        $writer = new DoctrinePackageWriter($manager);
+        $writer = new DoctrineWriter($manager);
 
         $writer->write($package);
     }

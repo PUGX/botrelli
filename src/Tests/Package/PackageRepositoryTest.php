@@ -2,30 +2,29 @@
 
 namespace PUGX\Bot\Tests\Package;
 
-use \PUGX\Bot\Package\PackageRepository;
+use PUGX\Bot\Infrastructure\Package\DoctrineRepository;
 
 class PackageRepositoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
      */
-    public function shouldGetANeverVisitedPackage()
+    public function shouldGetANotVisitedRecentlyPackage()
     {
-        $this->markTestSkipped();
-
-        $provider = $this->getMock('\PUGX\Bot\Package\ProviderInterface');
+        $reader = $this->getMock('\PUGX\Bot\Package\PackageReaderInterface');
+        $writer = $this->getMock('\PUGX\Bot\Package\PackageWriterInterface');
 
         $package = $this->getMockBuilder('PUGX\Bot\Package')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $provider
+        $reader
             ->expects($this->once())
-            ->method('getANeverVisitedPackage')
+            ->method('getANotVisitedRecentlyPackage')
             ->will($this->returnValue($package));
 
-        $packageRepository = new PackageRepository($provider);
+        $packageRepository = new DoctrineRepository($reader, $writer);
 
-        $this->assertInstanceOf('\Packagist\Api\Result\Package', $packageRepository->getANeverVisitedPackage());
+        $this->assertInstanceOf('\Packagist\Api\Result\Package', $packageRepository->getANotVisitedRecentlyPackage());
     }
 }
