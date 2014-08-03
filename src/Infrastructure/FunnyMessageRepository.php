@@ -14,20 +14,26 @@ class FunnyMessageRepository implements MessageRepositoryInterface
         $messages[] = new Message("D'oh!");
         $messages[] = new Message("This is nearly perfect, now!");
         $messages[] = new Message("Spring cleaning...");
-        $messages[] = new Message("> Details make perfection, and perfection is not a detail \n cit. Leonardo Da Vinci");
         $messages[] = new Message("No thanks needed, dude!");
         $messages[] = new Message("They call me PSR-Nazi.");
         $messages[] = new Message("My goal is to provide a better future.");
         $messages[] = new Message("Woow, coding standard are important.");
-        $messages[] = new Message("> With great power there must also come great responsibility.\n cit. Amazing Fantasy");
-        $messages[] = new Message("> Invention, my dear friends, is 93% perspiration, 6% electricity, 4% evaporation, and 2% butterscotch ripple.\n cit. Willy Wonka");
-        $messages[] = new Message("> I know kung fu.\n cit. Neo, The Matrix");
-        $messages[] = new Message("> Wait a minute, Doc. Ah… Are you telling me you built a time machine… out of a DeLorean?\n cit. Marty McFly");
-        $messages[] = new Message("> Train yourself to let go of everything you fear to lose.\n cit. Yoda");
-        $messages[] = new Message("> Always pass on what you have learned.\n cit. Yoda");
-        $messages[] = new Message("> [Luke:] I can’t believe it. [Yoda:] That is why you fail.\n cit. Yoda");
-        $messages[] = new Message("> PATIENCE YOU MUST HAVE my young padawan.\n cit. Yoda");
-        $messages[] = new Message("> Feel the force.\n cit. Yoda");
+        $messages[] = new Message("Rumor has it that there is something called PSR ...");
+        $messages[] = new Message("> Details make perfection, and perfection is not a detail \ncit. Leonardo Da Vinci");
+        $messages[] = new Message("> With great power there must also come great responsibility.\ncit. Amazing Fantasy");
+        $messages[] = new Message("> Invention, my dear friends, is 93% perspiration, 6% electricity, 4% evaporation, and 2% butterscotch ripple.\ncit. Willy Wonka");
+        $messages[] = new Message("> I know kung fu.\ncit. Neo, The Matrix");
+        $messages[] = new Message("> Wait a minute, Doc. Ah… Are you telling me you built a time machine… out of a DeLorean?\ncit. Marty McFly");
+        $messages[] = new Message("> Train yourself to let go of everything you fear to lose.\ncit. Yoda");
+        $messages[] = new Message("> Always pass on what you have learned.\ncit. Yoda");
+        $messages[] = new Message("> [Luke:] I can’t believe it. [Yoda:] That is why you fail.\ncit. Yoda");
+        $messages[] = new Message("> PATIENCE YOU MUST HAVE my young padawan.\ncit. Yoda");
+        $messages[] = new Message("> Feel the force.\ncit. Yoda");
+        $messages[] = new Message("> I’m Luke Skywalker, I’m here to rescue you.\ncit.");
+        $messages[] = new Message("> Oh my goodness! Shut me down. Machines building machines. How perverse.\ncit. C-3PO");
+        $messages[] = new Message("> I'm programmed for etiquette, not destruction!\ncit. C3-PO");
+        $messages[] = new Message("> Oh no. What have I done?\ncit. C3-PO");
+        $messages[] = new Message("> I'm not bad. I'm just drawn that way \ncit. Jessica Rabbit");
 
         $this->messages = $messages;
     }
