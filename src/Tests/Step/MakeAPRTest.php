@@ -52,7 +52,10 @@ class MakeAPRTest extends BaseTestCase
 | License       | MIT
 | Doc PR        |
 
-A funny message')));
+A funny message
+
+
+I\'m a [bot](http://botrelli.pugx.org)')));
 
         $response = $this->getMockBuilder('\Guzzle\Http\Message\Response')
             ->disableOriginalConstructor()

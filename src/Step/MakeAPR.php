@@ -23,6 +23,7 @@ class MakeAPR extends DispatcherStep
 | License       | MIT
 | Doc PR        |
 
+
 EOF;
 
     const SUFFIX = '

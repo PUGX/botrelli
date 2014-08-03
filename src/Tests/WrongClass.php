@@ -1,7 +1,7 @@
 <?php
-namespace Test\WronClass;
+namespace Test\WrongClass;
 
 class WrongClass
 {
-    public function __construct() {}
+    public function __construct(){}
 }
