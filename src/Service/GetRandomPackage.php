@@ -20,4 +20,4 @@ class GetRandomPackage
 
         return $this->repository->get($packageName);
     }
-} 
+}

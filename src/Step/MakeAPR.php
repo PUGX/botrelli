@@ -23,7 +23,6 @@ class MakeAPR extends DispatcherStep
 | License       | MIT
 | Doc PR        |
 
-
 EOF;
 
     const SUFFIX = '
@@ -31,11 +30,10 @@ EOF;
 
 I\'m a [bot](http://botrelli.pugx.org)';
 
-
     private $messageRepository;
     private $client;
 
-    function __construct(Client $client, MessageRepositoryInterface $messageRepository, EventDispatcherInterface $dispatcher)
+    public function __construct(Client $client, MessageRepositoryInterface $messageRepository, EventDispatcherInterface $dispatcher)
     {
         parent::__construct($dispatcher);
         $this->messageRepository = $messageRepository;
@@ -44,7 +42,7 @@ I\'m a [bot](http://botrelli.pugx.org)';
 
     public function execute(LocalPackage $package)
     {
-        $message = (string)$this->messageRepository->fetch();
+        $message = (string) $this->messageRepository->fetch();
 
         $pullRequest = $this->client
             ->api('pull_request')
@@ -69,4 +67,4 @@ I\'m a [bot](http://botrelli.pugx.org)';
     {
         return '[CS] Coding Standard fixes';
     }
-} 
+}

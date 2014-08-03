@@ -18,4 +18,4 @@ class GitEventMade extends Event
     {
         return (string) $this->gitWorkingCopy->getOutput();
     }
-} 
+}

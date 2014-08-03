@@ -8,8 +8,8 @@ class RepositoryForkedEvent extends Event
 {
     private $fork;
 
-    function __construct($fork)
+    public function __construct($fork)
     {
         $this->fork = $fork;
     }
-} 
+}

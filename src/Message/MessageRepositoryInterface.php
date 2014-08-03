@@ -1,7 +1,6 @@
 <?php
 namespace PUGX\Bot\Message;
 
-
 interface MessageRepositoryInterface
 {
     /**
@@ -10,4 +9,4 @@ interface MessageRepositoryInterface
      * @throws \Exception
      */
     public function fetch();
-} 
+}

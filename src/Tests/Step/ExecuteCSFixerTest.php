@@ -71,4 +71,3 @@ class ExecuteCSFixerTest extends BaseTestCase
         return md5(file_get_contents($filename));
     }
 }
-
