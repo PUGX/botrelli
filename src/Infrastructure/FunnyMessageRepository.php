@@ -33,6 +33,7 @@ class FunnyMessageRepository implements MessageRepositoryInterface
         $messages[] = new Message("> Oh my goodness! Shut me down. Machines building machines. How perverse.\ncit. C-3PO");
         $messages[] = new Message("> I'm programmed for etiquette, not destruction!\ncit. C3-PO");
         $messages[] = new Message("> Oh no. What have I done?\ncit. C3-PO");
+        $messages[] = new Message("> Uuuuuuuur Ahhhhrrrrrrrrr Uhrrrrr Ahhhhrrrrrrrr Aaaargh.\ncit. Chewbacca");
         $messages[] = new Message("> I'm not bad. I'm just drawn that way \ncit. Jessica Rabbit");
 
         $this->messages = $messages;
