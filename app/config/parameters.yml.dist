@@ -23,3 +23,4 @@ parameters:
     private_key_path:  ~/.ssh/id_rsa
     total_number_of_borreli_pr: 944
     temp_dir: /tmp
+    ga_tracking: UA-xxxxx-x
