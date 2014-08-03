@@ -1,7 +1,6 @@
 <?php
 namespace PUGX\Bot\Tests\Step;
 
-
 class BaseTestCase extends \PHPUnit_Framework_TestCase
 {
     protected $eventDispatcher;

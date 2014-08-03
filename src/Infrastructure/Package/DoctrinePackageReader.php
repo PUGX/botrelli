@@ -19,8 +19,8 @@ class DoctrinePackageReader implements PackageReaderInterface
         return $this->repository->findBy(array('visited' => false), array('name' => 'ASC'), 1);
     }
 
-    function get($package)
+    public function get($package)
     {
         return $this->repository->find($package);
     }
-} 
+}

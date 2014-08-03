@@ -6,7 +6,7 @@ class GetTotalBorreliPRs
 {
     private $value;
 
-    function __construct($value)
+    public function __construct($value)
     {
         $this->value = $value;
     }
@@ -15,4 +15,4 @@ class GetTotalBorreliPRs
     {
         return $this->value;
     }
-} 
+}

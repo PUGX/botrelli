@@ -33,5 +33,4 @@ abstract class DispatcherStep
         $this->eventDispatcher = $eventDispatcher;
     }
 
-
 }

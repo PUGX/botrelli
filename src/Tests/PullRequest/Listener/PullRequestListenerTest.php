@@ -31,4 +31,4 @@ class PullRequestListenerTest extends \PHPUnit_Framework_TestCase
 
         $pr->onPullRequestMade($event);
     }
-} 
+}

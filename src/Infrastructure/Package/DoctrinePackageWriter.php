@@ -20,4 +20,4 @@ class DoctrinePackageWriter implements PackageWriterInterface
         $this->manager->persist($package);
         $this->manager->flush($package);
     }
-} 
+}

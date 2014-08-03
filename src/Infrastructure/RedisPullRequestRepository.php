@@ -24,7 +24,7 @@ class RedisPullRequestRepository implements PullRequestRepositoryReaderInterface
 
     public function getAllDesc()
     {
-        return array_map(function($item) {
+        return array_map(function ($item) {
                 return unserialize($item);
             },
             $this->redis->lrange(self::PR, 0, -1)

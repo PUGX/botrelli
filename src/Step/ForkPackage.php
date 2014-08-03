@@ -19,7 +19,7 @@ class ForkPackage extends DispatcherStep
     /**
      * @param Client $client
      */
-    public function  __construct(Client $client, EventDispatcherInterface $dispatcher)
+    public function __construct(Client $client, EventDispatcherInterface $dispatcher)
     {
         parent::__construct($dispatcher);
         $this->client = $client;
